@@ -4,6 +4,7 @@
 <meta name="author" content="">
 <link rel="icon" href="<?= base_url('/assets/img/basic/favicon.ico')?>" type="image/x-icon">
 <link rel="stylesheet" href="<?= base_url('/assets/css/app.css')?>">
+<link rel="stylesheet" href="<?= base_url('/assets/css/sweetalert.css')?>">
 <style>
     .loader {
         position: fixed;

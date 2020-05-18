@@ -15,6 +15,7 @@ class Auth extends CI_Controller {
 
     public function masuk()
     {
+//        echo !isset($_SESSION['username']);
         if (isset($_SESSION['username']) && isset($_SESSION['password'])){
             redirect(site_url().'/Auth/login');
         }else{

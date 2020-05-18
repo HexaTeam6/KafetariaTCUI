@@ -36,9 +36,6 @@
                             <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3"><i class="icon icon-calendar"></i>By Date</a>
                         </li>
                     </ul>
-                    <a class="btn-fab absolute fab-right-bottom btn-primary" data-toggle="control-sidebar">
-                        <i class="icon icon-menu"></i>
-                    </a>
                 </div>
             </div>
         </header>
