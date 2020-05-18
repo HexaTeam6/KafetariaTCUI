@@ -25,8 +25,13 @@ class Auth extends CI_Controller {
 
     public function login()
     {
-        $username = $this->input->post("username");
-        $password = $this->input->post("password");
+        if (isset($_SESSION['username']) && isset($_SESSION['password'])){
+            $username = $_SESSION['username'];
+            $password = $_SESSION['password'];
+        }else{
+            $username = $this->input->post("username");
+            $password = $this->input->post("password");
+        }
 
         if($username == "admin"){
             $this->session->set_userdata("username", "admin");

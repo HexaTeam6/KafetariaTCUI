@@ -2,9 +2,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 <link rel="icon" href="<?= base_url('/assets/img/basic/favicon.ico')?>" type="image/x-icon">
 <link rel="stylesheet" href="<?= base_url('/assets/css/app.css')?>">
 <link rel="stylesheet" href="<?= base_url('/assets/css/sweetalert.css')?>">
+<link rel="stylesheet" href="<?= base_url('/assets/sakti/css/flaticon.css')?>">
 <style>
     .loader {
         position: fixed;

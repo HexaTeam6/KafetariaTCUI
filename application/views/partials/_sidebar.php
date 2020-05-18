@@ -1,8 +1,9 @@
 <aside class="main-sidebar fixed offcanvas shadow" data-toggle='offcanvas'>
     <section class="sidebar">
         <div class="w-80px mt-3 mb-3 ml-3">
-            <h2><b>SAKTI</b></h2>
-<!--            <img src="--><?//= base_url('assets/img/basic/logo.png')?><!--" alt="">-->
+            <a class="navbar-brand" href="<?php echo site_url('')?>" style="font-size: 25px; font-family: 'Josefin Sans'"><span class="flaticon-chef mr-1"></span><b>Kafetaria</b>
+                <small style="font-size: 12px; margin-top: -5px; float: left">I N F O R M A T I K A</small>
+            </a>
         </div>
         <div class="relative">
             <a data-toggle="collapse" href="#userSettingsCollapse" role="button" aria-expanded="false"
@@ -26,9 +27,9 @@
                             <i class="mr-2 icon-umbrella text-blue"></i>Profile
                         </a>
                         <a href="#" class="list-group-item list-group-item-action"><i
-                                    class="mr-2 icon-cogs text-yellow"></i>Settings</a>
-                        <a href="#" class="list-group-item list-group-item-action"><i
                                     class="mr-2 icon-security text-purple"></i>Change Password</a>
+                        <a href="<?= site_url('/Auth/logout')?>" class="list-group-item list-group-item-action"><i
+                                    class="mr-2 icon-exit_to_app text-red"></i>Keluar</a>
                     </div>
                 </div>
             </div>
