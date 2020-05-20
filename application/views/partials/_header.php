@@ -52,13 +52,13 @@
                             <li class="footer p-2 text-center"><a href="#">View all</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="nav-link " data-toggle="collapse" data-target="#navbarToggleExternalContent"
-                           aria-controls="navbarToggleExternalContent"
-                           aria-expanded="false" aria-label="Toggle navigation">
-                            <i class=" icon-search3 "></i>
-                        </a>
-                    </li>
+<!--                    <li>-->
+<!--                        <a class="nav-link " data-toggle="collapse" data-target="#navbarToggleExternalContent"-->
+<!--                           aria-controls="navbarToggleExternalContent"-->
+<!--                           aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                            <i class=" icon-search3 "></i>-->
+<!--                        </a>-->
+<!--                    </li>-->
                 </ul>
             </div>
         </div>

@@ -78,7 +78,7 @@
                         <div class="float-right">
                             <span class="icon icon-check s-48"></span>
                         </div>
-                        <div class="sc-counter s-36 counter-animated">12</div>
+                        <div class="sc-counter s-36">12</div>
                         <h6 class="counter-title">Diambil</h6>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                         <div class="float-right">
                             <span class="icon icon-archive s-48"></span>
                         </div>
-                        <div class="sc-counter s-36 counter-animated">20</div>
+                        <div class="sc-counter s-36">20</div>
                         <h6 class="counter-title">Selesai</h6>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                         <div class="float-right">
                             <span class="icon icon-queue s-48"></span>
                         </div>
-                        <div class="sc-counter s-36 counter-animated">3</div>
+                        <div class="sc-counter s-36">3</div>
                         <h6 class="counter-title">Menunggu</h6>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                         <div class="float-right">
                             <span class="icon icon-sync_problem s-48"></span>
                         </div>
-                        <div class="sc-counter s-36 counter-animated">15</div>
+                        <div class="sc-counter s-36">15</div>
                         <h6 class="counter-title">Diproses</h6>
                     </div>
                 </div>
