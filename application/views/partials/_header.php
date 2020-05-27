@@ -52,6 +52,33 @@
                             <li class="footer p-2 text-center"><a href="#">View all</a></li>
                         </ul>
                     </li>
+                    <?php if ($_SESSION['username'] == 'user'){?>
+                    <li class="dropdown custom-dropdown notifications-menu">
+                        <a href="#" class=" nav-link" data-toggle="dropdown" aria-expanded="false">
+                            <i class="icon-shopping-cart "></i>
+                            <span class="badge badge-danger badge-mini rounded-circle">2</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="header">5 item dipilih</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon icon-data_usage text-success"></i> Bakso x 2 Rp 20.000
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon icon-data_usage text-danger"></i> Es Teh x 3 Rp 12.000
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer p-2 text-center"><a href="<?= site_url('Pembayaran/')?>">Bayar</a></li>
+                        </ul>
+                    </li>
+                    <?php }?>
 <!--                    <li>-->
 <!--                        <a class="nav-link " data-toggle="collapse" data-target="#navbarToggleExternalContent"-->
 <!--                           aria-controls="navbarToggleExternalContent"-->

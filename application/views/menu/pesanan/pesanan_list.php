@@ -71,7 +71,41 @@
             </div>
         </div>
 
+        <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Review Pesanan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pilihMenu" class="col-form-label">Pilih Menu</label>
+                            <select class="form-control" id="pilihMenu">
+                                <option value="10000">Bakso</option>
+                                <option value="12000">Nasi Goreng</option>
+                                <option value="3000">Es Teh</option>
+                                <option value="6000">Es Jeruk</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pilihMenu" class="col-form-label">Review</label>
+                            <textarea name="review" id="review" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                        <button type="button" class="btn btn-primary">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid relative animatedParent animateOnce" style="padding-top: 15px">
+            <?php if ($_SESSION['username'] != 'user'){?>
             <div class="row text-white no-gutters no-m shadow">
                 <div class="col-lg-3">
                     <div class="green counter-box p-40">
@@ -110,14 +144,17 @@
                     </div>
                 </div>
             </div>
+            <?php }?>
 
             <div class="card my-3 no-b">
                 <div class="card-body">
                     <div class="col-sm-12"style="margin-bottom: 15px">
+                        <?php if ($_SESSION['username'] == 'kasir'){?>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" id="btnAdd">
                             <i class="icon-add"></i>
                             Tambah data
                         </button>
+                        <?php }?>
                     </div>
                     <table class="table table-bordered table-hover data-tables"
                            data-options='{"searching":true}' id="datatable">
@@ -166,6 +203,11 @@
                                 <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                     <i class="icon-print"></i>
                                 </button>
+                                <?php if ($_SESSION['username'] == 'penjual'){?>
+                                    <button type="button" class="btn btn-default btn-sm" id="btnProses" data-toggle="modal" data-target="#reviewModal">
+                                        Proses
+                                    </button>
+                                <?php }?>
                             </td>
                         </tr>
                         <tr>
@@ -183,6 +225,11 @@
                                 <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                     <i class="icon-print"></i>
                                 </button>
+                                <?php if ($_SESSION['username'] == 'user'){?>
+                                <button type="button" class="btn btn-default btn-sm" id="btnReview" data-toggle="modal" data-target="#reviewModal">
+                                    <i class="icon-pencil"></i>
+                                </button>
+                                <?php }?>
                             </td>
                         </tr>
                         <tr>
@@ -200,6 +247,11 @@
                                 <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                     <i class="icon-print"></i>
                                 </button>
+                                <?php if ($_SESSION['username'] == 'kasir'){?>
+                                    <button type="button" class="btn btn-default btn-sm" id="btnProses" data-toggle="modal" data-target="#reviewModal">
+                                        Diambil
+                                    </button>
+                                <?php }?>
                             </td>
                         </tr>
                         </tfoot>
@@ -207,6 +259,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <!--/#app -->

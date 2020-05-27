@@ -42,42 +42,54 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <?php if ($_SESSION['username'] == 'admin'){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Kategori')?>">
                     <i class="icon icon-package blue-text s-18"></i>
                     <span>Data Kategori</span>
                 </a>
             </li>
+            <?php }?>
+            <?php if ($_SESSION['username'] == 'penjual'){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Menu')?>">
                     <i class="icon icon-spoon red-text s-18"></i>
                     <span>Data Menu</span>
                 </a>
             </li>
+            <?php }?>
+            <?php if ($_SESSION['username'] == 'admin'){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Penjual')?>">
                     <i class="icon icon-people orange-text s-18"></i>
                     <span>Data Penjual</span>
                 </a>
             </li>
+            <?php }?>
+            <?php if ($_SESSION['username'] == 'admin'){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Kasir')?>">
                     <i class="icon icon-person grey-text s-18"></i>
                     <span>Data Kasir</span>
                 </a>
             </li>
+            <?php }?>
+            <?php if ($_SESSION['username'] == 'kasir' || $_SESSION['username'] == 'user' || $_SESSION['username'] == 'penjual'){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Pesanan')?>">
                     <i class="icon icon-attach_money light-green-text s-18"></i>
                     <span>Pesanan</span>
                 </a>
             </li>
+            <?php }?>
+            <?php if ($_SESSION['username'] == 'admin' || $_SESSION['username'] == 'kasir' || $_SESSION['username'] == 'penjual'){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Pendapatan')?>">
                     <i class="icon icon-document-checked pink-text s-18"></i>
                     <span>Laporan Pendapatan</span>
                 </a>
             </li>
+            <?php }?>
         </ul>
     </section>
 </aside>
