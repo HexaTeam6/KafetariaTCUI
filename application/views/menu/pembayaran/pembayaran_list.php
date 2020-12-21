@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
+    <title>Pembayaran</title>
     <!-- CSS -->
     <?php $this->load->view('partials/_css'); ?>
 </head>
@@ -30,37 +30,39 @@
 
 
                 <div class="p-5">
+                    <form action="<?= site_url('Pesanan/insert')?>" method="post">
                     <!-- title row -->
                     <div class="row">
                         <div class="col-12">
                             <img class="w-80px mb-4" src="assets/img/dummy/bootstrap-social-logo.png" alt="">
 
                             <div class="float-left">
-
-                                <h4>Struk #007612</h4><br>
+                                <?php $id_pesan = date('Ymd')."-".$_SESSION['id_login']."-".rand(1000,9999)?>
+                                <input type="hidden" name="id_pesan" value="<?= $id_pesan ?>">
+                                <h3><b>Struk #<?= $id_pesan ?></b></h3><br>
                                 <table>
                                     <tr>
                                         <td class="font-weight-normal">Tanggal:</td>
-                                        <td>2/10/2014</td>
+                                        <td><?= date('d/m/Y') ?></td>
                                     </tr>
-                                    <tr>
-                                        <td class="font-weight-normal">ID Pesan:</td>
-                                        <td>P01213</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-weight-normal">Batas Pembayaran: &nbsp;  &nbsp; &nbsp;</td>
-                                        <td> 2/22/2014</td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td class="font-weight-normal">ID Pesan:</td>-->
+<!--                                        <td>P01213</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td class="font-weight-normal">Batas Pembayaran: &nbsp;  &nbsp; &nbsp;</td>-->
+<!--                                        <td>--><?//= date('d/m/Y', strtotime('+1 day', strtotime(date('d-m-Y')))) ?><!--</td>-->
+<!--                                    </tr>-->
                                     <tr>
                                         <td class="font-weight-normal">User ID:</td>
-                                        <td>05111840000004</td>
+                                        <td><?= $_SESSION['username'] ?></td>
                                     </tr>
                                 </table>
                                 <div >
                                     <label for="jenisPembayaran" class="col-form-label">Jenis Pembayaran</label>
-                                    <select id="jenisPembayaran" class="form-control">
-                                        <option value="1">Cash</option>
-                                        <option value="2">OVO</option>
+                                    <select id="jenisPembayaran" name="jenis_bayar" class="form-control">
+                                        <option value="C">Cash</option>
+                                        <option value="O">OVO</option>
                                     </select>
                                 </div>
 
@@ -76,25 +78,27 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Jumlah</th>
                                     <th>Nama Menu</th>
-                                    <th>ID Menu</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
                                     <th>Subtotal</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                $total = 0;
+                                if (isset($_SESSION['cart'])):
+                                foreach ($_SESSION['cart'] as $row):?>
                                 <tr>
-                                    <td>2</td>
-                                    <td>Bakso</td>
-                                    <td>M0001</td>
-                                    <td>Rp 20.000</td>
+                                    <td><?= $row['nama_menu'] ?></td>
+                                    <td><?= $row['harga_menu'] ?></td>
+                                    <td><?= $row['jumlah_beli'] ?></td>
+                                    <td>Rp <?= $row['harga_menu'] * $row['jumlah_beli'] ?></td>
                                 </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Es Teh</td>
-                                    <td>M0007</td>
-                                    <td>Rp 12.000</td>
-                                </tr>
+                                <?php
+                                $total+= $row['harga_menu'] * $row['jumlah_beli'];
+                                endforeach;
+                                endif;?>
                                 </tbody>
                             </table>
                         </div>
@@ -112,7 +116,8 @@
                                     <tbody>
                                     <tr>
                                         <th>Total:</th>
-                                        <td>Rp 32.000</td>
+                                        <td>Rp <?= $total ?></td>
+                                        <input type="hidden" name="total_bayar" value="<?= $total ?>">
                                     </tr>
                                     </tbody></table>
                             </div>
@@ -124,15 +129,15 @@
                     <!-- this row will not appear when printing -->
                     <div class="row no-print">
                         <div class="col-12">
-                            <a href="invoice-print.html" target="_blank" class="btn btn-lg  btn-default"><i class="icon icon-print"></i> Print</a>
-                            <a  href="<?php echo site_url('Pesanan/')?>"  class="btn btn-success btn-lg  float-right"><i class="icon icon-credit-card"></i> Lakukan Pembayaran
-                            </a>
+<!--                            <a href="invoice-print.html" target="_blank" class="btn btn-lg  btn-default"><i class="icon icon-print"></i> Print</a>-->
+                            <button type="submit" class="btn btn-success btn-lg  float-right"><i class="icon icon-credit-card"></i> Lakukan Pembayaran
+                            </button>
                             <button type="button" class="btn btn-danger btn-lg float-right mr-2">
                                 <i class="icon icon-crosshairs"></i> Batalkan
                             </button>
                         </div>
                     </div>
-
+                    </form>
                 </div>
 
             </div>

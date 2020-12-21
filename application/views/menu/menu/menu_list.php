@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
+    <title>Data Menu</title>
     <!-- CSS -->
     <?php $this->load->view('partials/_css'); ?>
 </head>
@@ -36,16 +36,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form id="form" action="" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="namaMenu" class="col-form-label">Nama Menu</label>
-                            <input type="text" class="form-control" id="namaMenu" placeholder="Nama Menu">
+                            <input type="text" class="form-control" id="namaMenu" name="nama_menu" placeholder="Nama Menu">
                         </div>
                         <div class="form-group">
                             <label for="kategoriMenu" class="col-form-label">Kategori Menu</label>
-                            <select id="kategoriMenu" class="form-control">
-                                <option value="1">Makanan</option>
-                                <option value="2">Minuman</option>
+                            <select id="kategoriMenu" name="id_kategori" class="form-control">
+                                <?php foreach ($kategori as $row):?>
+                                    <option value="<?= $row->id_kategori ?>"><?= $row->nama_kategori ?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -54,18 +56,20 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Rp</div>
                                 </div>
-                                <input type="text" class="form-control" id="hargaMenu" placeholder="Harga">
+                                <input type="number" class="form-control" name="harga_menu" id="hargaMenu" placeholder="Harga">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="jumlahMenu" class="col-form-label">Jumlah</label>
-                            <input type="number" class="form-control" id="jumlahMenu" placeholder="Jumlah">
+                            <input type="number" class="form-control" name="stok" id="jumlahMenu" placeholder="Jumlah">
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" id="id_menu" name="id_menu" value="">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,7 +87,6 @@
                            data-options='{"searching":true}' id="datatable">
                         <thead>
                         <tr>
-                            <th>ID Menu</th>
                             <th>Nama Menu</th>
                             <th>Kategori Menu</th>
                             <th>Harga</th>
@@ -92,12 +95,19 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($data as $row):?>
                         <tr>
-                            <td>M0001</td>
-                            <td class="nama">Bakso</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 10.000</td>
-                            <td class="jumlah"><span class="badge badge-danger r-3 blink">Habis</span></td>
+                            <input type="hidden" class="id" value="<?= $row->id_menu ?>">
+                            <td class="nama"><?= $row->nama_menu ?></td>
+                            <input type="hidden" class="kategoriMenu" value="<?= $row->id_kategori ?>">
+                            <td><span class="badge badge-secondary"><?= $row->nama_kategori ?></span></td>
+                            <td class="harga">Rp <?= $row->harga_menu ?></td>
+                            <?php if ($row->stok == 0){?>
+                                <td class="jumlah"><span class="badge badge-danger r-3 blink">Habis</span></td>
+                            <?php }
+                                else {?>
+                                <td class="jumlah"><span class="badge badge-success r-3"><?= $row->stok ?></span></td>
+                            <?php }?>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
                                     <i class="icon-pencil"></i>
@@ -107,156 +117,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>M0002</td>
-                            <td class="nama">Jus Alpukat</td>
-                            <td class="kategoriMenu"><span class="badge badge-primary">Minuman</span></td>
-                            <td class="harga">Rp 8.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">14</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0003</td>
-                            <td class="nama">Es Jeruk</td>
-                            <td class="kategoriMenu"><span class="badge badge-primary">Minuman</span></td>
-                            <td class="harga">Rp 5.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">24</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0004</td>
-                            <td class="nama">Es Teh</td>
-                            <td class="kategoriMenu"><span class="badge badge-primary">Minuman</span></td>
-                            <td class="harga">Rp 3.000</td>
-                            <td class="jumlah"><span class="badge badge-danger r-3 blink">Habis</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0005</td>
-                            <td class="nama">Mie Ayam</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 15.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">17</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0006</td>
-                            <td class="nama">Nasi Goreng</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 12.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">6</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0007</td>
-                            <td class="nama">Tahu Isi</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 1.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">30</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0008</td>
-                            <td class="nama">Gado Gado</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 13.000</td>
-                            <td class="jumlah"><span class="badge badge-danger r-3 blink">Habis</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0009</td>
-                            <td class="nama">Es Milo</td>
-                            <td class="kategoriMenu"><span class="badge badge-primary">Minuman</span></td>
-                            <td class="harga">Rp 8.000</td>
-                            <td class="jumlah"><span class="badge badge-danger r-3 blink">Habis</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0010</td>
-                            <td class="nama">Nasi Ayam Geprek</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 14.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">3</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>M0011</td>
-                            <td class="nama">Penyetan</td>
-                            <td class="kategoriMenu"><span class="badge badge-secondary">Makanan</span></td>
-                            <td class="harga">Rp 13.000</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">5</span></td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php endforeach;?>
                         </tfoot>
                     </table>
                 </div>
@@ -268,7 +129,19 @@
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(document).ready(function() {
+        <?php if (isset($_SESSION['msg'])) {?>
+        swal({
+            position: 'center',
+            type: 'success',
+            title: "<?php echo $_SESSION['msg'];?>",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php }?>
+
         $('#btnAdd').click(function () {
+            $('#form').attr('action', "<?php echo site_url('/Menu/insert')?>");
+            $("#id_menu").val('');
             $("#namaMenu").val('');
             $("#kategoriMenu").val('');
             $("#jumlahMenu").val('');
@@ -277,9 +150,11 @@
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
+            $('#form').attr('action', "<?php echo site_url('/Menu/update')?>");
             var $item = $(this).closest("tr");
+            $("#id_menu").val($.trim($item.find(".id").val()));
             $("#namaMenu").val($.trim($item.find(".nama").text()));
-            $("#kategoriMenu").val($.trim($item.find(".kategoriMenu").text())== "Makanan" ? "1" : "2" );
+            $("#kategoriMenu").val($.trim($item.find(".kategoriMenu").val()));
             var jumlah = $.trim($item.find(".jumlah").text());
             $("#jumlahMenu").val(jumlah == "Habis"? 0 : jumlah);
             $("#hargaMenu").val($.trim($item.find(".harga").text()).replace('Rp ', ''));
@@ -288,6 +163,7 @@
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
+            var id = $.trim($item.find(".id").val());
             var nama = $.trim($item.find(".nama").text());
 
             swal({
@@ -303,7 +179,12 @@
             },
             function(isConfirm){
                 if (isConfirm) {
-                    swal("Berhasil", "Data berhasil dihapus", "success");
+                    $.ajax({
+                        url: "<?php echo site_url("/Menu/delete/");?>" + id,
+                        success: function (result) {
+                            window.location.href = result;
+                        }
+                    });
                 } else {
                     swal("Dibatalkan", "Data tidak jadi dihapus", "error");
                 }

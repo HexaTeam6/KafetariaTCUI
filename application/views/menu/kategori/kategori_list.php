@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
+    <title>Kategori</title>
     <!-- CSS -->
     <?php $this->load->view('partials/_css'); ?>
 </head>
@@ -18,7 +18,7 @@
                 <div class="row p-t-b-10 ">
                     <div class="col">
                         <h4>
-                            <i class="icon-box"></i>
+                            <i class="icon-package"></i>
                             Kategori
                         </h4>
                     </div>
@@ -36,16 +36,19 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form id="form" action="" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="namaKategori" class="col-form-label">Nama Kategori</label>
-                            <input type="text" class="form-control" id="namaKategori" placeholder="Nama Kategori">
+                            <input type="text" class="form-control" id="namaKategori" name="nama_kategori" placeholder="Nama Kategori">
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" id="id_kategori" name="id_kategori" value="">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -63,15 +66,15 @@
                            data-options='{"searching":true}' id="datatable">
                         <thead>
                         <tr>
-                            <th>ID Kategori</th>
                             <th>Nama Kategori</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($data as $row):?>
                         <tr>
-                            <td>KT001</td>
-                            <td class="nama">Minuman</td>
+                            <input type="hidden" class="id" value="<?= $row->id_kategori ?>">
+                            <td class="nama"><?= $row->nama_kategori ?></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
                                     <i class="icon-pencil"></i>
@@ -81,18 +84,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>KT002</td>
-                            <td class="nama">Makanan</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php endforeach;?>
                         </tfoot>
                     </table>
                 </div>
@@ -104,19 +96,34 @@
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(document).ready(function() {
+        <?php if (isset($_SESSION['msg'])) {?>
+        swal({
+            position: 'center',
+            type: 'success',
+            title: "<?php echo $_SESSION['msg'];?>",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php }?>
+
         $('#btnAdd').click(function () {
+            $('#form').attr('action', "<?php echo site_url('/Kategori/insert')?>");
+            $("#id_kategori").val('');
             $("#namaKategori").val('');
             $('.modal-title').text('Tambah Data');
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
+            $('#form').attr('action', "<?php echo site_url('/Kategori/update')?>");
             var $item = $(this).closest("tr");
+            $("#id_kategori").val($.trim($item.find(".id").val()));
             $("#namaKategori").val($.trim($item.find(".nama").text()));
             $('.modal-title').text('Edit Data');
         });
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
+            var id = $.trim($item.find(".id").val());
             var nama = $.trim($item.find(".nama").text());
 
             swal({
@@ -132,7 +139,12 @@
             },
             function(isConfirm){
                 if (isConfirm) {
-                    swal("Berhasil", "Data berhasil dihapus", "success");
+                    $.ajax({
+                        url: "<?php echo site_url("/Kategori/delete/");?>" + id,
+                        success: function (result) {
+                            window.location.href = result;
+                        }
+                    });
                 } else {
                     swal("Dibatalkan", "Data tidak jadi dihapus", "error");
                 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
+    <title>Pesanan</title>
     <!-- CSS -->
     <?php $this->load->view('partials/_css'); ?>
 </head>
@@ -161,8 +161,6 @@
                         <thead>
                         <tr>
                             <th>ID Pesanan</th>
-                            <th>Nama Pembeli</th>
-                            <th>Nama Menu</th>
                             <th>Total Bayar</th>
                             <th>Jenis Pembayaran</th>
                             <th>Waktu Pesan</th>
@@ -171,13 +169,14 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($data as $row):?>
                         <tr>
-                            <td class="id">P241020201</td>
-                            <td><span class="badge badge-secondary">pembelian offline</span></td>
-                            <td class="pilihMenu">Nasi Goreng</td>
-                            <td class="harga">Rp 12.000</td>
-                            <td class="jenisPembayaran">OVO</td>
-                            <td class="waktuPesan">09:00 AM</td>
+                            <td class="id"><?= $row->id_pesanan ?></td>
+<!--                            <td><span class="badge badge-secondary">pembelian offline</span></td>-->
+<!--                            <td class="pilihMenu">Nasi Goreng</td>-->
+                            <td class="harga">Rp <?= $row->total_bayar ?></td>
+                            <td class="jenisPembayaran"><?= $row->jenis_bayar=="O"? "OVO" : "Cash" ?></td>
+                            <td class="waktuPesan"><?= $row->waktu_pesan ?></td>
                             <td class="jumlah"><span class="badge badge-danger r-3 blink">Diproses</span></td>
                             <td>
 <!--                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">-->
@@ -188,72 +187,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="id">P241020202</td>
-                            <td>Maharani</td>
-                            <td class="pilihMenu">Bakso</td>
-                            <td class="harga">Rp 10.000</td>
-                            <td class="jenisPembayaran">Cash</td>
-                            <td class="waktuPesan">09:20 AM</td>
-                            <td class="jumlah"><span class="badge badge-warning r-3">Menunggu</span></td>
-                            <td>
-<!--                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">-->
-<!--                                    <i class="icon-pencil"></i>-->
-<!--                                </button>-->
-                                <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                    <i class="icon-print"></i>
-                                </button>
-                                <?php if ($_SESSION['username'] == 'penjual'){?>
-                                    <button type="button" class="btn btn-default btn-sm" id="btnProses" data-toggle="modal" data-target="#reviewModal">
-                                        Proses
-                                    </button>
-                                <?php }?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="id">P241020203</td>
-                            <td>Wahed</td>
-                            <td class="pilihMenu">Mie Ayam, Es Teh</td>
-                            <td class="harga">Rp 18.000</td>
-                            <td class="jenisPembayaran">OVO</td>
-                            <td class="waktuPesan">13:31 PM</td>
-                            <td class="jumlah"><span class="badge badge-success r-3">Diambil</span></td>
-                            <td>
-<!--                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">-->
-<!--                                    <i class="icon-pencil"></i>-->
-<!--                                </button>-->
-                                <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                    <i class="icon-print"></i>
-                                </button>
-                                <?php if ($_SESSION['username'] == 'user'){?>
-                                <button type="button" class="btn btn-default btn-sm" id="btnReview" data-toggle="modal" data-target="#reviewModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <?php }?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="id">P241020204</td>
-                            <td><span class="badge badge-secondary">pembelian offline</span></td>
-                            <td class="pilihMenu">Es Jeruk</td>
-                            <td class="harga">Rp 6.000</td>
-                            <td class="jenisPembayaran">OVO</td>
-                            <td class="waktuPesan">12:11 PM</td>
-                            <td class="jumlah"><span class="badge badge-primary r-3">Selesai</span></td>
-                            <td>
-<!--                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">-->
-<!--                                    <i class="icon-pencil"></i>-->
-<!--                                </button>-->
-                                <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                    <i class="icon-print"></i>
-                                </button>
-                                <?php if ($_SESSION['username'] == 'kasir'){?>
-                                    <button type="button" class="btn btn-default btn-sm" id="btnProses" data-toggle="modal" data-target="#reviewModal">
-                                        Diambil
-                                    </button>
-                                <?php }?>
-                            </td>
-                        </tr>
+                        <?php endforeach;?>
                         </tfoot>
                     </table>
                 </div>

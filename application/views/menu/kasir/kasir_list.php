@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
+    <title>Data Kasir</title>
     <!-- CSS -->
     <?php $this->load->view('partials/_css'); ?>
 </head>
@@ -36,31 +36,43 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="namaKasir" class="col-form-label">Nama Kasir</label>
-                            <input type="text" class="form-control" id="namaKasir" placeholder="Nama Kasir">
+                    <form id="form" action="" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="username" class="col-form-label">Username</label>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="namaKasir" class="col-form-label">Nama Kasir</label>
+                                <input type="text" class="form-control" name="nama_kasir" id="namaKasir" placeholder="Nama Kasir">
+                            </div>
+                            <div class="form-group">
+                                <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
+                                <select id="jenisKelamin" name="jenis_kelamin" class="form-control">
+                                    <option value="L">Laki Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nomorTelepon" class="col-form-label">Nomor Telepon</label>
+                                <input type="number" class="form-control" name="telp_kasir" id="nomorTelepon" placeholder="Nomor Telepon">
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat" class="col-form-label">Alamat</label>
+                                <input type="text" class="form-control" name="alamat_kasir" id="alamat" placeholder="Alamat">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="nomorTelepon" class="col-form-label">Nomor Telepon</label>
-                            <input type="text" class="form-control" id="nomorTelepon" placeholder="Nomor Telepon">
+                        <div class="modal-footer">
+                            <input type="hidden" id="id_kasir" name="id_kasir" value="">
+                            <input type="hidden" id="id_login" name="id_login" value="">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                        <div class="form-group">
-                            <label for="alamat" class="col-form-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" placeholder="Alamat">
-                        </div>
-                        <div class="form-group">
-                            <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
-                            <select id="jenisKelamin" class="form-control">
-                                <option value="L">Laki Laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -78,7 +90,7 @@
                            data-options='{"searching":true}' id="datatable">
                         <thead>
                         <tr>
-                            <th>ID Kasir</th>
+                            <th>Username</th>
                             <th>Nama Kasir</th>
                             <th>Jenis Kelamin</th>
                             <th>Nomor Telepon</th>
@@ -87,66 +99,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>K0001</td>
-                            <td class="nama">Dewi</td>
-                            <td class="jenisKelamin">Perempuan</td>
-                            <td class="noTelp">0813434758693</td>
-                            <td class="alamat">Jl. Reno Mukti 19</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>K0002</td>
-                            <td class="nama">Bambang</td>
-                            <td class="jenisKelamin">Laki Laki</td>
-                            <td class="noTelp">0813482398689</td>
-                            <td class="alamat">Jl. Keputih Gang 2 No 4</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>K0003</td>
-                            <td class="nama">Najib</td>
-                            <td class="jenisKelamin">Laki Laki</td>
-                            <td class="noTelp">0813434756123</td>
-                            <td class="alamat">Jl. Gebang Wetan 21</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>K0004</td>
-                            <td class="nama">Humairah</td>
-                            <td class="jenisKelamin">Perempuan</td>
-                            <td class="noTelp">08134347818217</td>
-                            <td class="alamat">Jl. Mulyosari II No 90</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php foreach ($data as $row):?>
+                            <tr>
+                                <input type="hidden" class="id" value="<?= $row->id_kasir ?>">
+                                <input type="hidden" class="id_login" value="<?= $row->id_login ?>">
+                                <td class="username"><?= $row->username ?></td>
+                                <td class="nama"><?= $row->nama_kasir ?></td>
+                                <td class="jenisKelamin"><?= ($row->jenis_kelamin) == "L" ? "Laki Laki" : "Perempuan" ?></td>
+                                <td class="noTelp"><?= $row->telp_kasir ?></td>
+                                <td class="alamat"><?= $row->alamat_kasir ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="icon-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
+                                        <i class="icon-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
                         </tfoot>
                     </table>
                 </div>
@@ -158,7 +129,21 @@
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(document).ready(function() {
+        <?php if (isset($_SESSION['msg'])) {?>
+        swal({
+            position: 'center',
+            type: 'success',
+            title: "<?php echo $_SESSION['msg'];?>",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php }?>
+
         $('#btnAdd').click(function () {
+            $('#form').attr('action', "<?php echo site_url('/Kasir/insert')?>");
+            $("#id_kasir").val('');
+            $("#id_login").val('');
+            $("#username").val('');
             $("#namaKasir").val('');
             $("#jenisKelamin").val('');
             $("#nomorTelepon").val('');
@@ -167,7 +152,11 @@
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
+            $('#form').attr('action', "<?php echo site_url('/Kasir/update')?>");
             var $item = $(this).closest("tr");
+            $("#id_kasir").val($.trim($item.find(".id").val()));
+            $("#id_login").val($.trim($item.find(".id_login").val()));
+            $("#username").val($.trim($item.find(".username").text()));
             $("#namaKasir").val($.trim($item.find(".nama").text()));
             $("#jenisKelamin").val($.trim($item.find(".jenisKelamin").text())== "Laki Laki" ? "L" : "P" );
             $("#nomorTelepon").val($.trim($item.find(".noTelp").text()));
@@ -177,26 +166,33 @@
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
+            var id = $.trim($item.find(".id").val());
+            var id_login = $.trim($item.find(".id_login").val());
             var nama = $.trim($item.find(".nama").text());
 
             swal({
-                title: "Apakah yakin akan dihapus?",
-                text: "Data Kasir dengan nama " + nama + " akan dihapus",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#26C6DA",
-                confirmButtonText: "Ya, hapus!",
-                cancelButtonText: "Tidak, batalkan!",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm){
-                if (isConfirm) {
-                    swal("Berhasil", "Data berhasil dihapus", "success");
-                } else {
-                    swal("Dibatalkan", "Data tidak jadi dihapus", "error");
-                }
-            });
+                    title: "Apakah yakin akan dihapus?",
+                    text: "Data Kasir dengan nama " + nama + " akan dihapus",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#26C6DA",
+                    confirmButtonText: "Ya, hapus!",
+                    cancelButtonText: "Tidak, batalkan!",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "<?php echo site_url("/Kasir/delete/");?>" + id + "/" + id_login,
+                            success: function (result) {
+                                window.location.href = result;
+                            }
+                        });
+                    } else {
+                        swal("Dibatalkan", "Data tidak jadi dihapus", "error");
+                    }
+                });
         });
     });
 </script>

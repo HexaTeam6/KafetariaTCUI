@@ -25,7 +25,7 @@
                 </div>
         </header>
         <div class="container-fluid relative animatedParent animateOnce">
-            <?php if($_SESSION['username'] == 'user'){?>
+            <?php if($_SESSION['role'] == 'U'){?>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -35,27 +35,22 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <form action="<?= site_url('Home/addToCart') ?>" method="post">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="namaMenu" class="col-form-label">Nama Menu : Es Teh</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="namaMenu" class="col-form-label">Kategori : Minuman</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="namaMenu" class="col-form-label">Harga : Rp 2.000</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="namaMenu" class="col-form-label">Stok : 12</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="namaMenu" class="col-form-label">Review: Kemanisan</label>
+                                    <label for="jumlah_beli" class="col-form-label">Jumlah</label>
+                                    <input type="number" class="form-control" id="jumlah_beli" name="jumlah_beli" min="1" max="">
                                 </div>
                             </div>
                             <div class="modal-footer">
+                                <input type="hidden" name="id_menu" id="id_menu" value="">
+                                <input type="hidden" name="nama_menu" id="nama_menu" value="">
+                                <input type="hidden" name="harga_menu" id="harga_menu" value="">
+                                <input type="hidden" name="kategori" id="kategori" value="">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                                <button type="button" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -63,72 +58,29 @@
                 <div class="row row-eq-height my-3">
                 <div class="col-md-12">
                     <div class="row">
+                        <?php foreach ($data as $row):?>
                         <div class="col-md-3 col-sm-6">
                             <div class="card no-b mb-3">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div><span class="badge badge-pill badge-secondary">Rp 10.000</span></div>
-                                        <div><span class="badge badge badge-primary">10</span></div>
+                                        <div><span class="badge badge-pill badge-secondary">Rp <?= $row->harga_menu ?></span></div>
+                                        <div><span class="badge badge badge-primary"><?= $row->stok ?></span></div>
                                     </div>
                                     <div class="text-center">
-                                        <div class="s-48 my-3 font-weight-lighter">Bakso</div>
-                                        <button class="btn btn-success" id="btnPesan">
+                                        <div class="s-48 my-3 font-weight-lighter"><?= $row->nama_menu ?></div>
+                                        <button class="btn btn-success" id="btnPesan" data-toggle="modal" data-target="#exampleModal">
                                             Pesan
                                         </button>
-                                        <div class="row offset-2 d-none" id="addMenu">
-                                            <button class="btn btn-success" id="minus"><i class="icon-minus"></i></button>
-                                            <input type="text" class="form-control col-md-3" readonly value="1" id="total">
-                                            <button class="btn btn-success" id="add"><i class="icon-plus"></i></button>
-                                        </div>
                                     </div>
+                                    <input type="hidden" class="id_menu" value="<?= $row->id_menu ?>">
+                                    <input type="hidden" class="nama_menu" value="<?= $row->nama_menu ?>">
+                                    <input type="hidden" class="harga_menu" value="<?= $row->harga_menu ?>">
+                                    <input type="hidden" class="kategori" value="<?= $row->nama_kategori ?>">
+                                    <input type="hidden" class="stok" value="<?= $row->stok ?>">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card no-b mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div><span class="badge badge-pill badge-secondary">Rp 2.000</span></div>
-                                        <div><span class="badge badge badge-primary">12</span></div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="s-48 my-3 font-weight-lighter">Es Teh</div>
-                                        <button class="btn btn-success" id="btnPesan">
-                                            Pesan
-                                        </button>
-                                        <button class="btn btn-light" id="btnReview" data-toggle="modal" data-target="#exampleModal">
-                                            <i class="icon-info"></i>
-                                        </button>
-                                        <div class="row offset-2 d-none" id="addMenu">
-                                            <button class="btn btn-success" id="minus"><i class="icon-minus"></i></button>
-                                            <input type="text" class="form-control col-md-3" readonly value="1" id="total">
-                                            <button class="btn btn-success" id="add"><i class="icon-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card no-b mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div><span class="badge badge-pill badge-secondary">Rp 6.000</span></div>
-                                        <div><span class="badge badge badge-danger blink">Habis</span></div>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="s-48 my-3 font-weight-lighter">Es Jeruk</div>
-                                        <button disabled class="btn btn-success" id="btnPesan">
-                                            Pesan
-                                        </button>
-                                        <div class="row offset-2 d-none" id="addMenu">
-                                            <button class="btn btn-success" id="minus"><i class="icon-minus"></i></button>
-                                            <input type="text" class="form-control col-md-3" readonly value="1" id="total">
-                                            <button class="btn btn-success" id="add"><i class="icon-plus"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach;?>
                     </div>
                 </div>
             </div>
@@ -142,25 +94,14 @@
 <?php $this->load->view('partials/_javascripts');?>
 <script>
     $(document).ready(function () {
-        $('#btnPesan').click(function () {
-            $(this).addClass('d-none');
-            $('#addMenu').removeClass('d-none');
-            $('#total').val('1');
-        })
-
-        $('#add').click(function () {
-            var total = $('#total').val();
-            $('#total').val(parseInt(total) + 1);
-        })
-
-        $('#minus').click(function () {
-            var total = $('#total').val();
-            total = total - 1;
-            if (total == 0){
-                $('#addMenu').addClass('d-none');
-                $('#btnPesan').removeClass('d-none');
-            }
-            $('#total').val(total);
+        $('.row').on('click', '[id^=btnPesan]', function(){
+            var $item = $(this).closest(".card-body");
+            $("#jumlah_beli").val('1');
+            $("#id_menu").val($.trim($item.find(".id_menu").val()));
+            $("#nama_menu").val($.trim($item.find(".nama_menu").val()));
+            $("#harga_menu").val($.trim($item.find(".harga_menu").val()));
+            $("#kategori").val($.trim($item.find(".nama_kategori").val()));
+            $("#jumlah_beli").attr({"max" : $.trim($item.find(".stok").val())});
         })
     });
 </script>

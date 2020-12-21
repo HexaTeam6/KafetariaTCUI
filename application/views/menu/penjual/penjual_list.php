@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard</title>
+    <title>Data Penjual</title>
     <!-- CSS -->
     <?php $this->load->view('partials/_css'); ?>
 </head>
@@ -36,31 +36,43 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form id="form" action="" method="post">
                     <div class="modal-body">
                         <div class="form-group">
+                            <label for="username" class="col-form-label">Username</label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
                             <label for="namaPenjual" class="col-form-label">Nama Penjual</label>
-                            <input type="text" class="form-control" id="namaPenjual" placeholder="Nama Penjual">
-                        </div>
-                        <div class="form-group">
-                            <label for="nomorTelepon" class="col-form-label">Nomor Telepon</label>
-                            <input type="text" class="form-control" id="nomorTelepon" placeholder="Nomor Telepon">
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat" class="col-form-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" placeholder="Alamat">
+                            <input type="text" class="form-control" name="nama_penjual" id="namaPenjual" placeholder="Nama Penjual">
                         </div>
                         <div class="form-group">
                             <label for="jenisKelamin" class="col-form-label">Jenis Kelamin</label>
-                            <select id="jenisKelamin" class="form-control">
+                            <select id="jenisKelamin" name="jenis_kelamin" class="form-control">
                                 <option value="L">Laki Laki</option>
                                 <option value="P">Perempuan</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="nomorTelepon" class="col-form-label">Nomor Telepon</label>
+                            <input type="number" class="form-control" name="telp_penjual" id="nomorTelepon" placeholder="Nomor Telepon">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat" class="col-form-label">Alamat</label>
+                            <input type="text" class="form-control" name="alamat_penjual" id="alamat" placeholder="Alamat">
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" id="id_penjual" name="id_penjual" value="">
+                        <input type="hidden" id="id_login" name="id_login" value="">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -78,7 +90,7 @@
                            data-options='{"searching":true}' id="datatable">
                         <thead>
                         <tr>
-                            <th>ID Penjual</th>
+                            <th>Username</th>
                             <th>Nama Penjual</th>
                             <th>Jenis Kelamin</th>
                             <th>Nomor Telepon</th>
@@ -87,12 +99,15 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($data as $row):?>
                         <tr>
-                            <td>P0001</td>
-                            <td class="nama">Sumiati</td>
-                            <td class="jenisKelamin">Perempuan</td>
-                            <td class="noTelp">0813434758693</td>
-                            <td class="alamat">Jl. Reno Mukti 21</td>
+                            <input type="hidden" class="id" value="<?= $row->id_penjual ?>">
+                            <input type="hidden" class="id_login" value="<?= $row->id_login ?>">
+                            <td class="username"><?= $row->username ?></td>
+                            <td class="nama"><?= $row->nama_penjual ?></td>
+                            <td class="jenisKelamin"><?= ($row->jenis_kelamin) == "L" ? "Laki Laki" : "Perempuan" ?></td>
+                            <td class="noTelp"><?= $row->telp_penjual ?></td>
+                            <td class="alamat"><?= $row->alamat_penjual ?></td>
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
                                     <i class="icon-pencil"></i>
@@ -102,51 +117,7 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>P0002</td>
-                            <td class="nama">Suyatno</td>
-                            <td class="jenisKelamin">Laki Laki</td>
-                            <td class="noTelp">0813482398689</td>
-                            <td class="alamat">Jl. Keputih Gang 2 No 31</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>P0003</td>
-                            <td class="nama">Mujib</td>
-                            <td class="jenisKelamin">Laki Laki</td>
-                            <td class="noTelp">0813434756123</td>
-                            <td class="alamat">Jl. Gebang Wetan 54</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>P0004</td>
-                            <td class="nama">Retno</td>
-                            <td class="jenisKelamin">Perempuan</td>
-                            <td class="noTelp">08134347818217</td>
-                            <td class="alamat">Jl. Mulyosari III No 12</td>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="icon-pencil"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" id="btnDelete">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php endforeach;?>
                         </tfoot>
                     </table>
                 </div>
@@ -158,7 +129,21 @@
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(document).ready(function() {
+        <?php if (isset($_SESSION['msg'])) {?>
+        swal({
+            position: 'center',
+            type: 'success',
+            title: "<?php echo $_SESSION['msg'];?>",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php }?>
+
         $('#btnAdd').click(function () {
+            $('#form').attr('action', "<?php echo site_url('/Penjual/insert')?>");
+            $("#id_penjual").val('');
+            $("#id_login").val('');
+            $("#username").val('');
             $("#namaPenjual").val('');
             $("#jenisKelamin").val('');
             $("#nomorTelepon").val('');
@@ -167,7 +152,11 @@
         });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
+            $('#form').attr('action', "<?php echo site_url('/Penjual/update')?>");
             var $item = $(this).closest("tr");
+            $("#id_penjual").val($.trim($item.find(".id").val()));
+            $("#id_login").val($.trim($item.find(".id_login").val()));
+            $("#username").val($.trim($item.find(".username").text()));
             $("#namaPenjual").val($.trim($item.find(".nama").text()));
             $("#jenisKelamin").val($.trim($item.find(".jenisKelamin").text())== "Laki Laki" ? "L" : "P" );
             $("#nomorTelepon").val($.trim($item.find(".noTelp").text()));
@@ -177,6 +166,8 @@
 
         $('#datatable').on('click', '[id^=btnDelete]', function() {
             var $item = $(this).closest("tr");
+            var id = $.trim($item.find(".id").val());
+            var id_login = $.trim($item.find(".id_login").val());
             var nama = $.trim($item.find(".nama").text());
 
             swal({
@@ -192,7 +183,12 @@
             },
             function(isConfirm){
                 if (isConfirm) {
-                    swal("Berhasil", "Data berhasil dihapus", "success");
+                    $.ajax({
+                        url: "<?php echo site_url("/Penjual/delete/");?>" + id + "/" + id_login,
+                        success: function (result) {
+                            window.location.href = result;
+                        }
+                    });
                 } else {
                     swal("Dibatalkan", "Data tidak jadi dihapus", "error");
                 }
