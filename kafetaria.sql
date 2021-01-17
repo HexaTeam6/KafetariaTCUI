@@ -98,6 +98,21 @@ CREATE TABLE `pembeli` (
 
 insert  into `pembeli`(`id_pembeli`,`id_login`,`nama_pembeli`,`telp_pembeli`,`email_pembeli`) values (1,13,'Wahed','123123','asdasd'),(2,14,'Abdur Rachman Wahed','0812323935','abdurrachmanwahed@gmail.com');
 
+/*Table structure for table `pengeluaran` */
+
+DROP TABLE IF EXISTS `pengeluaran`;
+
+CREATE TABLE `pengeluaran` (
+  `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_pengeluaran` varchar(100) DEFAULT NULL,
+  `jumlah` float DEFAULT NULL COMMENT 'uang',
+  `tanggal_pembelian` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_pengeluaran`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pengeluaran` */
+
 /*Table structure for table `penjual` */
 
 DROP TABLE IF EXISTS `penjual`;
@@ -134,7 +149,7 @@ CREATE TABLE `pesanan` (
 
 /*Data for the table `pesanan` */
 
-insert  into `pesanan`(`id_pesanan`,`id_pembeli`,`id_kasir`,`status_pesanan`,`waktu_pesan`,`total_bayar`,`jenis_bayar`,`keterangan`) values ('20201208-14-2300',2,NULL,'1','2020-12-08 14:59:12',16000,'C',NULL),('20201208-14-5152',2,NULL,'1','2020-12-08 16:55:15',26000,'C',NULL),('20201208-14-5661',2,NULL,'1','2020-12-08 15:13:53',24000,'O',NULL);
+insert  into `pesanan`(`id_pesanan`,`id_pembeli`,`id_kasir`,`status_pesanan`,`waktu_pesan`,`total_bayar`,`jenis_bayar`,`keterangan`) values ('20201208-14-2300',2,NULL,'4','2020-12-08 14:59:12',16000,'C',NULL),('20201208-14-5152',2,NULL,'1','2020-12-08 16:55:15',26000,'C',NULL),('20201208-14-5661',2,NULL,'1','2020-12-08 15:13:53',24000,'O',NULL),('20210114-14-4235',2,NULL,'1','2021-01-14 20:22:50',20000,'C',NULL),('20210114-14-5752',2,NULL,'2','2021-01-14 15:43:29',8000,'C',NULL),('20210117-14-8179',2,NULL,'1','2021-01-17 10:22:16',230000,'C',NULL);
 
 /*Table structure for table `pesanan_detail` */
 
@@ -150,7 +165,7 @@ CREATE TABLE `pesanan_detail` (
 
 /*Data for the table `pesanan_detail` */
 
-insert  into `pesanan_detail`(`id_pesanan`,`id_menu`,`jumlah_beli`,`total_bayar`,`keterangan`) values ('20201208-14-2300',2,2,16000,NULL),('20201208-14-5661',2,3,24000,NULL),('20201208-14-5152',2,2,16000,NULL),('20201208-14-5152',4,1,10000,NULL);
+insert  into `pesanan_detail`(`id_pesanan`,`id_menu`,`jumlah_beli`,`total_bayar`,`keterangan`) values ('20201208-14-2300',2,2,16000,NULL),('20201208-14-5661',2,3,24000,NULL),('20201208-14-5152',2,2,16000,NULL),('20201208-14-5152',4,1,10000,NULL),('20210114-14-5752',2,1,8000,NULL),('20210114-14-4235',4,1,10000,NULL),('20210114-14-4235',4,1,10000,NULL),('20210117-14-8179',4,23,230000,NULL);
 
 /*Table structure for table `review` */
 
