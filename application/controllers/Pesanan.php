@@ -7,6 +7,7 @@ class Pesanan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Menu_model');
         $this->load->model('Pesanan_model');
     }
 
@@ -15,7 +16,15 @@ class Pesanan extends CI_Controller
         if (!isset($_SESSION['username']) && !isset($_SESSION['password'])){
             redirect(site_url().'/Auth/login');
         }else{
-            $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
+            if ($_SESSION['role'] == 'U'){
+                $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
+            }
+            elseif ($_SESSION['role'] == 'K'){
+                $data['data'] = $this->Pesanan_model->tampil_data()->result();
+            }
+            elseif ($_SESSION['role'] == 'P'){
+                $data['data'] = $this->Pesanan_model->pesanan_menuggu()->result();
+            }
             $this->load->view('menu/pesanan/pesanan_list', $data);
         }
     }
@@ -49,6 +58,21 @@ class Pesanan extends CI_Controller
         $this->session->set_flashdata('msg', 'Pembelian Berhasil!');
 
         unset($_SESSION['cart']);
+
+        redirect(site_url().'/Pesanan');
+    }
+
+    public function updateStatus(){
+        $id_pesan   = $this->input->post('id_pesanan');
+        $status     = $this->input->post('status');
+
+        $data = array(
+            'id_pesanan'        => $id_pesan,
+            'status_pesanan'    => $status
+        );
+
+        $this->Pesanan_model->update_data('pesanan', $id_pesan, $data);
+        $this->session->set_flashdata('msg', 'Status berhasil diubah!');
 
         redirect(site_url().'/Pesanan');
     }

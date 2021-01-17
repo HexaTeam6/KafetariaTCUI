@@ -75,7 +75,7 @@
                     <!-- Table row -->
                     <div class="row my-3">
                         <div class="col-12 table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="datatable">
                                 <thead>
                                 <tr>
                                     <th>Nama Menu</th>
@@ -132,7 +132,7 @@
 <!--                            <a href="invoice-print.html" target="_blank" class="btn btn-lg  btn-default"><i class="icon icon-print"></i> Print</a>-->
                             <button type="submit" class="btn btn-success btn-lg  float-right"><i class="icon icon-credit-card"></i> Lakukan Pembayaran
                             </button>
-                            <button type="button" class="btn btn-danger btn-lg float-right mr-2">
+                            <button type="button" class="btn btn-danger btn-lg float-right mr-2" id="btnBatalkan">
                                 <i class="icon icon-crosshairs"></i> Batalkan
                             </button>
                         </div>
@@ -147,6 +147,31 @@
 <!--/#app -->
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
+    $('#btnBatalkan').click(function () {
+        swal({
+                title: "Apakah yakin membatalkan pesanan?",
+                text: "Pesanan akan dibatalkan",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#26C6DA",
+                confirmButtonText: "Ya, batalkan!",
+                cancelButtonText: "Tidak, lanjutkan!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    $.ajax({
+                        url: "<?php echo site_url("/Pembayaran/hapus/");?>",
+                        success: function (result) {
+                            window.location.href = result;
+                        }
+                    });
+                } else {
+                    swal("Dilanjutkan", "Data tidak jadi dibatalkan", "error");
+                }
+            });
+    })
 </script>
 </body>
 </html>

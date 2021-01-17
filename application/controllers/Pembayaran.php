@@ -17,4 +17,9 @@ class Pembayaran extends CI_Controller
             $this->load->view('menu/pembayaran/pembayaran_list');
         }
     }
+
+    public function hapus(){
+        unset($_SESSION['cart']);
+        echo site_url().'/Home';
+    }
 }

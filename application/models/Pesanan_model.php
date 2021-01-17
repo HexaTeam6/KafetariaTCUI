@@ -21,6 +21,13 @@ class Pesanan_model extends CI_Model{
 		    ORDER BY waktu_pesan DESC", array($id_pembeli));
     }
 
+    function pesanan_menuggu(){
+        return $this->db->query("
+            SELECT * FROM pesanan
+            WHERE id_pembeli = ?
+		    ORDER BY waktu_pesan DESC", array($_SESSION['id_penjual']));
+    }
+
     function listPesanan(){
         return $this->db->query("SELECT id_pesanan, nama_pesanan
                                  FROM pesanan");

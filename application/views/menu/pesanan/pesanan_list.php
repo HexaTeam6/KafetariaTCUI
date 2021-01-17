@@ -26,40 +26,23 @@
             </div>
         </header>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Pesanan</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Pesanan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pilihMenu" class="col-form-label">Pilih Menu</label>
-                            <select class="select2" name="states[]" multiple="multiple" id="pilihMenu">
-                                <option value="10000">Bakso</option>
-                                <option value="12000">Nasi Goreng</option>
-                                <option value="3000">Es Teh</option>
-                                <option value="6000">Es Jeruk</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="totalBayar" class="col-form-label">Total Bayar</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Rp</div>
-                                </div>
-                                <input type="text" class="form-control" id="totalBayar" placeholder="Total Bayar" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="jenisPembayaran" class="col-form-label">Jenis Pembayaran</label>
-                            <select id="jenisPembayaran" class="form-control">
-                                <option value="1">Cash</option>
-                                <option value="2">OVO</option>
+                            <label for="pilihStatus" class="col-form-label">Status</label>
+                            <select class="select2" id="pilihStatus">
+                                <option value="10000">Menunggu</option>
+                                <option value="12000">Diproses</option>
+                                <option value="3000">Selesai</option>
+                                <option value="6000">Diambil</option>
                             </select>
                         </div>
                     </div>
@@ -67,6 +50,37 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
                         <button type="button" class="btn btn-primary">Simpan</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Status Pesanan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="form" action="" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pilihMenu" class="col-form-label">Status</label>
+                            <select class="select2" id="pilihMenu" name="status">
+                                <option value="1">Menunggu</option>
+                                <option value="2">Diproses</option>
+                                <option value="3">Selesai</option>
+                                <option value="4">Diambil</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_pesanan" id="id_pesanan" value="">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -80,26 +94,19 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="pilihMenu" class="col-form-label">Pilih Menu</label>
-                            <select class="form-control" id="pilihMenu">
-                                <option value="10000">Bakso</option>
-                                <option value="12000">Nasi Goreng</option>
-                                <option value="3000">Es Teh</option>
-                                <option value="6000">Es Jeruk</option>
-                            </select>
+                    <form id="form" action="" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="review" class="col-form-label">Review</label>
+                                <textarea name="review" class="form-control" id="review" cols="30" rows="5"></textarea>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="pilihMenu" class="col-form-label">Review</label>
-                            <textarea name="review" id="review" cols="30" rows="10" class="form-control"></textarea>
+                        <div class="modal-footer">
+                            <input type="hidden" name="id_pesanan" id="id_pesanan" value="">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                        <button type="button" class="btn btn-primary">Simpan</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -112,7 +119,7 @@
                         <div class="float-right">
                             <span class="icon icon-check s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">12</div>
+                        <div class="sc-counter s-36">0</div>
                         <h6 class="counter-title">Diambil</h6>
                     </div>
                 </div>
@@ -121,7 +128,7 @@
                         <div class="float-right">
                             <span class="icon icon-archive s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">20</div>
+                        <div class="sc-counter s-36">0</div>
                         <h6 class="counter-title">Selesai</h6>
                     </div>
                 </div>
@@ -130,7 +137,7 @@
                         <div class="float-right">
                             <span class="icon icon-queue s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">3</div>
+                        <div class="sc-counter s-36">0</div>
                         <h6 class="counter-title">Menunggu</h6>
                     </div>
                 </div>
@@ -139,7 +146,7 @@
                         <div class="float-right">
                             <span class="icon icon-sync_problem s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">15</div>
+                        <div class="sc-counter s-36">5</div>
                         <h6 class="counter-title">Diproses</h6>
                     </div>
                 </div>
@@ -169,7 +176,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($data as $row):?>
+                        <?php
+                        $status;
+                        $badge;
+                        foreach ($data as $row):?>
                         <tr>
                             <td class="id"><?= $row->id_pesanan ?></td>
 <!--                            <td><span class="badge badge-secondary">pembelian offline</span></td>-->
@@ -177,14 +187,38 @@
                             <td class="harga">Rp <?= $row->total_bayar ?></td>
                             <td class="jenisPembayaran"><?= $row->jenis_bayar=="O"? "OVO" : "Cash" ?></td>
                             <td class="waktuPesan"><?= $row->waktu_pesan ?></td>
-                            <td class="jumlah"><span class="badge badge-danger r-3 blink">Diproses</span></td>
+                            <?php
+                            if ($row->status_pesanan == 1){
+                                $status = "Menunggu";
+                                $badge  = "warning";
+                            }else if ($row->status_pesanan == 2){
+                                $status = "Diproses";
+                                $badge  = "danger";
+                            }else if ($row->status_pesanan == 3){
+                                $status = "Selesai";
+                                $badge  = "primary";
+                            }else if ($row->status_pesanan == 4){
+                                $status = "Diambil";
+                                $badge  = "success";
+                            }?>
+                            <td class="status"><span class="badge badge-<?= $badge ?> r-3 blink"><?= $status ?></span></td>
                             <td>
-<!--                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#exampleModal">-->
-<!--                                    <i class="icon-pencil"></i>-->
-<!--                                </button>-->
+                                <?php if ($row->status_pesanan != 4){?>
+                                <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#statusModal">
+                                    <i class="icon-pencil"></i>
+                                </button>
+                                <?php }?>
+                                <?php if ($row->status_pesanan == 4 && $_SESSION['role'] == 'U'){?>
+                                <button type="button" class="btn btn-primary btn-sm" id="btnReview" data-toggle="modal" data-target="#reviewModal">
+                                    <i class="icon-chat2"></i>
+                                </button>
+                                <?php }?>
                                 <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                     <i class="icon-print"></i>
                                 </button>
+<!--                                <button type="button" class="btn btn-success btn-sm" id="btnDetail">-->
+<!--                                    <i class="icon-search"></i>-->
+<!--                                </button>-->
                             </td>
                         </tr>
                         <?php endforeach;?>
@@ -200,30 +234,27 @@
 <?php $this->load->view('partials/_javascripts'); ?>
 <script>
     $(document).ready(function() {
-        $('#pilihMenu').change(function(){
-            //noinspection JSAnnotator
-            const add = (a, b) => parseInt(a) + parseInt(b)
-            var total = 0;
-            if ($('#pilihMenu').val().length) total = $('#pilihMenu').val().reduce(add);
-            $("#totalBayar").val(total);
-        });
+//        $('#pilihMenu').change(function(){
+//            //noinspection JSAnnotator
+//            const add = (a, b) => parseInt(a) + parseInt(b)
+//            var total = 0;
+//            if ($('#pilihMenu').val().length) total = $('#pilihMenu').val().reduce(add);
+//            $("#totalBayar").val(total);
+//        });
 
-        $('#btnAdd').click(function () {
-            $("#pilihMenu").val('');
-            $("#jenisPembayaran").val('');
-            $("#jumlahMenu").val('');
-            $("#totalBayar").val('');
-            $('.modal-title').text('Tambah Data');
-        });
+//        $('#btnAdd').click(function () {
+//            $("#pilihMenu").val('');
+//            $("#jenisPembayaran").val('');
+//            $("#jumlahMenu").val('');
+//            $("#totalBayar").val('');
+//            $('.modal-title').text('Tambah Data');
+//        });
 
         $('#datatable').on('click', '[id^=btnEdit]', function() {
+            $('#form').attr('action', "<?php echo site_url('/Pesanan/updateStatus')?>");
             var $item = $(this).closest("tr");
-            $("#pilihMenu").val($.trim($item.find(".nama").text()));
-            $("#jenisPembayaran").val($.trim($item.find(".jenisPembayaran").text())== "Makanan" ? "1" : "2" );
-            var jumlah = $.trim($item.find(".jumlah").text());
-            $("#jumlahMenu").val(jumlah == "Habis"? 0 : jumlah);
-            $("#totalBayar").val($.trim($item.find(".harga").text()).replace('Rp ', ''));
-            $('.modal-title').text('Edit Data');
+            $("#id_pesanan").val($.trim($item.find(".id").text()));
+            $("#pilihStatus").val($.trim($item.find(".status").text()));
         });
 
         $('#datatable').on('click', '[id^=btnPrint]', function() {

@@ -55,6 +55,35 @@
                     </div>
                 </div>
 
+                <div class="modal fade" id="review" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detail Menu</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="<?= site_url('Home/addToCart') ?>" method="post">
+                                <div class="modal-body">
+                                    <h5>Anggun</h5>
+                                    <p>Rasanya lumayan, porsinya kurang</p>
+                                    <hr>
+                                    <h5>Rofita</h5>
+                                    <p>Kurang sedap</p>
+                                    <hr>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="hidden" name="id_menu" id="id_menu" value="">
+                                    <input type="hidden" name="nama_menu" id="nama_menu" value="">
+                                    <input type="hidden" name="harga_menu" id="harga_menu" value="">
+                                    <input type="hidden" name="kategori" id="kategori" value="">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row row-eq-height my-3">
                 <div class="col-md-12">
                     <div class="row">
@@ -70,6 +99,10 @@
                                         <div class="s-48 my-3 font-weight-lighter"><?= $row->nama_menu ?></div>
                                         <button class="btn btn-success" id="btnPesan" data-toggle="modal" data-target="#exampleModal">
                                             Pesan
+                                        </button>
+                                        <button class="btn btn-white" data-toggle="modal" data-target="#review">
+                                            <i class="icon icon-info"></i>
+                                            Info
                                         </button>
                                     </div>
                                     <input type="hidden" class="id_menu" value="<?= $row->id_menu ?>">

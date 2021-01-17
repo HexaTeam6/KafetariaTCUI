@@ -34,7 +34,7 @@
                         </a>
                     </div>
                     <div>
-                        <h1 class="nav-title text-white">Laporan Pendapatan</h1>
+                        <h1 class="nav-title text-white">Laporan Pengeluaran</h1>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="blue accent-2 p-5">
             <canvas data-chart="line" height="300" data-dataset="[
-                                                            [24000, 140000, 76000, 0],
+                                                            [12000, 4500, 24000, 32000],
 
                                                             ]" data-labels="['Senin',
                                                             'Selasa',
@@ -131,7 +131,7 @@
                                                                             display: true,
                                                                             ticks: {
                                                                                 fontColor: 'rgba(255,255,255,0.5)',
-                                                                                stepSize: 50000,
+                                                                                stepSize: 5000,
 
                                                                             },
                                                                             gridLines: {
@@ -163,51 +163,6 @@
             <div class="animated fadeInUpShort">
                 <div class="card no-b shadow">
                     <div class="card-body p-0">
-                        <div class="lightSlider" data-item="6" data-item-xl="4" data-item-md="2" data-item-sm="1" data-pause="7000" data-pager="false" data-auto="true"
-                             data-loop="true">
-                            <div class="p-5 purple lighten-3 text-white">
-                                <h5 class="font-weight-normal s-14">Nasi Ayam Geprek</h5>
-                                <span class="s-48 font-weight-lighter text-primary">24</span>
-                                <div>Rp 250.000
-                                    <span class="text-primary">
-                                    <i class="icon icon-arrow_upward"></i> 32%</span>
-                                </div>
-                            </div>
-
-                            <div class="p-5">
-                                <h5 class="font-weight-normal s-14">Bakso</h5>
-                                <span class="s-48 font-weight-lighter light-green-text">16</span>
-                                <div> Rp 100.000
-                                    <span class="text-light-green">
-                                    <i class="icon icon-arrow_downward"></i> 67%</span>
-                                </div>
-
-                            </div>
-
-                            <div class="p-5 light">
-                                <h5 class="font-weight-normal s-14">Nasi Goreng</h5>
-                                <span class="s-48 font-weight-lighter text-primary">67</span>
-                                <div> Rp 1.250.000</div>
-                            </div>
-
-                            <div class="p-5">
-                                <h5 class="font-weight-normal s-14">Es Jeruk</h5>
-                                <span class="s-48 font-weight-lighter amber-text">34</span>
-                                <div> Rp 120.000</div>
-                            </div>
-
-                            <div class="p-5 light">
-                                <h5 class="font-weight-normal s-14">Es Teh</h5>
-                                <span class="s-48 font-weight-lighter text-indigo">32</span>
-                                <div> Rp 80.000</div>
-                            </div>
-
-                            <div class="p-5">
-                                <h5 class="font-weight-normal s-14">Mie Ayam</h5>
-                                <span class="s-48 font-weight-lighter pink-text">45</span>
-                                <div> Rp 1.180.000</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -225,23 +180,21 @@
                        data-options='{"searching":true}' id="datatable">
                     <thead>
                     <tr>
-                        <th>ID Pesanan</th>
-                        <th>Nama Pembeli</th>
-                        <th>Nama Menu</th>
-                        <th>Total Bayar</th>
-                        <th>Jenis Pembayaran</th>
-                        <th>Waktu Pesan</th>
+                    <tr>
+                        <th>ID Pengeluaran</th>
+                        <th>Nama Pengeluaran</th>
+                        <th>Jumlah</th>
+                        <th>Tanggal Pembelian</th>
                         <th>Aksi</th>
+                    </tr>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="id">P241020201</td>
-                        <td><span class="badge badge-secondary">pembelian offline</span></td>
-                        <td class="pilihMenu">Nasi Goreng</td>
-                        <td class="harga">Rp 12.000</td>
-                        <td class="jenisPembayaran">OVO</td>
-                        <td class="waktuPesan">21/08/2019 09:00 AM</td>
+                        <td>Plastik 1KG</td>
+                        <td class="harga">Rp 24.000</td>
+                        <td class="waktuPesan">12/01/2021</td>
                         <td>
                             <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                 <i class="icon-print"></i>
@@ -250,11 +203,9 @@
                     </tr>
                     <tr>
                         <td class="id">P241020202</td>
-                        <td>Maharani</td>
-                        <td class="pilihMenu">Bakso</td>
-                        <td class="harga">Rp 10.000</td>
-                        <td class="jenisPembayaran">Cash</td>
-                        <td class="waktuPesan">15/05/2020 09:20 AM</td>
+                        <td>Gula 3KG</td>
+                        <td class="harga">Rp 43.000</td>
+                        <td class="waktuPesan">17/01/2021</td>
                         <td>
                             <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                 <i class="icon-print"></i>
@@ -263,24 +214,9 @@
                     </tr>
                     <tr>
                         <td class="id">P241020203</td>
-                        <td>Wahed</td>
-                        <td class="pilihMenu">Mie Ayam, Es Teh</td>
-                        <td class="harga">Rp 18.000</td>
-                        <td class="jenisPembayaran">OVO</td>
-                        <td class="waktuPesan">24/10/2019 13:31 PM</td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                <i class="icon-print"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="id">P241020204</td>
-                        <td><span class="badge badge-secondary">pembelian offline</span></td>
-                        <td class="pilihMenu">Es Jeruk</td>
-                        <td class="harga">Rp 6.000</td>
-                        <td class="jenisPembayaran">OVO</td>
-                        <td class="waktuPesan">12/10/2020 12:11 PM</td>
+                        <td>Beras 5KG</td>
+                        <td class="harga">Rp 76.000</td>
+                        <td class="waktuPesan">10/01/2021</td>
                         <td>
                             <button type="button" class="btn btn-default btn-sm" id="btnPrint">
                                 <i class="icon-print"></i>
