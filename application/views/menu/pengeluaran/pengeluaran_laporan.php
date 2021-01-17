@@ -75,10 +75,10 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-2 float-right" id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-            <i class="icon icon-calendar"></i>&nbsp;
-            <span></span> <i class="fa fa-caret-down"></i>
-        </div>
+<!--        <div class="col-md-2 float-right" id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">-->
+<!--            <i class="icon icon-calendar"></i>&nbsp;-->
+<!--            <span></span> <i class="fa fa-caret-down"></i>-->
+<!--        </div>-->
         <div class="blue accent-2 p-5">
             <a href="<?= site_url('Pengeluaran/laporan/hari') ?>" class="btn btn-primary btn-sm" style="margin-bottom: 10px">
                 <i class="icon-line-chart"></i>
@@ -105,11 +105,11 @@
         <div class="card my-3 no-b">
             <div class="card-body">
                 <div class="col-sm-12"style="margin-bottom: 15px">
-                    <h2>List Pesanan</h2>
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" id="btnAdd">
-                        <i class="icon-print2"></i>
-                        Cetak Laporan
-                    </button>
+                    <h2>List Pengeluaran</h2>
+<!--                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" id="btnAdd">-->
+<!--                        <i class="icon-print2"></i>-->
+<!--                        Cetak Laporan-->
+<!--                    </button>-->
                 </div>
                 <table class="table table-bordered table-hover data-tables"
                        data-options='{"searching":true}' id="datatable">
