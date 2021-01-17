@@ -203,7 +203,7 @@
                             }?>
                             <td class="status"><span class="badge badge-<?= $badge ?> r-3 blink"><?= $status ?></span></td>
                             <td>
-                                <?php if ($row->status_pesanan != 4){?>
+                                <?php if ($row->status_pesanan != 4 && $_SESSION['role'] =! 'U'){?>
                                 <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#statusModal">
                                     <i class="icon-pencil"></i>
                                 </button>

@@ -23,11 +23,11 @@
                 <div class="clearfix"></div>
                 <div class="collapse multi-collapse" id="userSettingsCollapse">
                     <div class="list-group mt-3 shadow">
-                        <a href="index.html" class="list-group-item list-group-item-action ">
-                            <i class="mr-2 icon-umbrella text-blue"></i>Profile
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action"><i
-                                    class="mr-2 icon-security text-purple"></i>Change Password</a>
+<!--                        <a href="index.html" class="list-group-item list-group-item-action ">-->
+<!--                            <i class="mr-2 icon-umbrella text-blue"></i>Profile-->
+<!--                        </a>-->
+<!--                        <a href="#" class="list-group-item list-group-item-action"><i-->
+<!--                                    class="mr-2 icon-security text-purple"></i>Change Password</a>-->
                         <a href="<?= site_url('/Auth/logout')?>" class="list-group-item list-group-item-action"><i
                                     class="mr-2 icon-exit_to_app text-red"></i>Keluar</a>
                     </div>
