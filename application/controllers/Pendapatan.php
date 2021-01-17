@@ -25,6 +25,8 @@ class Pendapatan extends CI_Controller
                 $data['data'] = $this->Pendapatan_model->tampil_perhari()->result();
             }
 
+            $data['type'] = $type;
+
             foreach ($data['data'] as $row) {
                 $data['labels'][] = $row->waktu;
                 $data['datas'][] = $row->total;

@@ -124,10 +124,14 @@
                        data-options='{"searching":true}' id="datatable">
                     <thead>
                     <tr>
+                        <?php if ($type == "hari"){?>
                         <th>ID Pesanan</th>
                         <th>Nama Pembeli</th>
+                        <?php }?>
                         <th>Total Bayar</th>
+                        <?php if ($type == "hari"){?>
                         <th>Jenis Pembayaran</th>
+                        <?php }?>
                         <th>Waktu Pesan</th>
 <!--                        <th>Aksi</th>-->
                     </tr>
@@ -135,11 +139,15 @@
                     <tbody>
                     <?php foreach ($data as $row):?>
                     <tr>
+                        <?php if ($type == "hari"){?>
                         <td><?= $row->id_pesanan ?></td>
                         <td><?= $row->nama_pembeli ?></td>
+                        <?php }?>
                         <td>Rp <?= $row->total ?></td>
+                        <?php if ($type == "hari"){?>
                         <td><?= $row->jenis_bayar== 'O' ? 'OVO' : 'CASH'; ?></td>
-                        <td><?= $row->waktu ?></td>
+                        <?php }?>
+                        <td><?= $type=="minggu"? "minggu ke-" : "" ?><?= $row->waktu ?></td>
 <!--                        <td>-->
 <!--                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">-->
 <!--                                <i class="icon-print"></i>-->

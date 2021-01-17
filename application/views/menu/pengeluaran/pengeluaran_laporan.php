@@ -80,7 +80,9 @@
                     <thead>
                     <tr>
                     <tr>
+                        <?php if ($type == "hari"){?>
                         <th>Nama Pengeluaran</th>
+                        <?php }?>
                         <th>Jumlah</th>
                         <th>Waktu Pembelian</th>
 <!--                        <th>Aksi</th>-->
@@ -90,9 +92,11 @@
                     <tbody>
                     <?php foreach ($data as $row):?>
                     <tr>
+                        <?php if ($type == "hari"){?>
                         <td><?= $row->nama_pengeluaran ?></td>
-                        <td>Rp <?= $row->jumlah ?></td>
-                        <td><?= $row->waktu ?></td>
+                        <?php }?>
+                        <td>Rp <?= $row->total ?></td>
+                        <td><?= $type=="minggu"? "minggu ke-" : "" ?><?= $row->waktu ?></td>
 <!--                        <td>-->
 <!--                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">-->
 <!--                                <i class="icon-print"></i>-->
