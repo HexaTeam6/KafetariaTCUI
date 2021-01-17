@@ -19,15 +19,21 @@ class Pesanan extends CI_Controller
 //            echo $_SESSION['role'];
 //            die();
             if ($_SESSION['role'] == 'U' || isset($_SESSION['id_pembeli'])){
+                $result = $this->Pesanan_model->pesananByIdPembeli_count($_SESSION['id_pembeli'])->row();
                 $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
             }
-            elseif ($_SESSION['role'] == 'K' || isset($_SESSION['id_kasir'])){
+            else {
+                $result = $this->Pesanan_model->tampil_data_count()->row();
                 $data['data'] = $this->Pesanan_model->tampil_data()->result();
             }
-            elseif ($_SESSION['role'] == 'P' || isset($_SESSION['id_penjual'])){
-                $data['data'] = $this->Pesanan_model->pesanan_menuggu()->result();
-            }
-            $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
+//            elseif ($_SESSION['role'] == 'P' || isset($_SESSION['id_penjual'])){
+//                $result = $this->Pesanan_model->pesanan_penjual_count()->row();
+//                $data['data'] = $this->Pesanan_model->pesanan_penjual()->result();
+//            }
+            $data['menunggu'] = $result->menunggu;
+            $data['diproses'] = $result->diproses;
+            $data['selesai'] = $result->selesai;
+            $data['diambil'] = $result->diambil;
             $this->load->view('menu/pesanan/pesanan_list', $data);
         }
     }
@@ -52,6 +58,8 @@ class Pesanan extends CI_Controller
             $tmp['id_menu']     = $row['id_menu'];
             $tmp['jumlah_beli'] = $row['jumlah_beli'];
             $tmp['total_bayar'] = $row['jumlah_beli'] * $row['harga_menu'];
+
+            $this->Menu_model->updateStock($row['id_menu'], $row['jumlah_beli']);
 
             array_push($detail_data, $tmp);
         }

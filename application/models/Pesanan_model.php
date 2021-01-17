@@ -14,6 +14,17 @@ class Pesanan_model extends CI_Model{
 		    ORDER BY waktu_pesan DESC");
     }
 
+    function tampil_data_count(){
+        return $this->db->query("
+            SELECT 
+            SUM(case when status_pesanan = 1 then 1 else 0 end) as menunggu,
+            SUM(case when status_pesanan = 2 then 1 else 0 end) as diproses,
+            SUM(case when status_pesanan = 3 then 1 else 0 end) as selesai,
+            SUM(case when status_pesanan = 4 then 1 else 0 end) as diambil
+            FROM pesanan
+		    ORDER BY waktu_pesan DESC");
+    }
+
     function pesananByIdPembeli($id_pembeli){
         return $this->db->query("
             SELECT * FROM pesanan
@@ -21,12 +32,36 @@ class Pesanan_model extends CI_Model{
 		    ORDER BY waktu_pesan DESC", array($id_pembeli));
     }
 
-    function pesanan_menuggu(){
+    function pesananByIdPembeli_count($id_pembeli){
         return $this->db->query("
-            SELECT * FROM pesanan
+            SELECT 
+            SUM(case when status_pesanan = 1 then 1 else 0 end) as menunggu,
+            SUM(case when status_pesanan = 2 then 1 else 0 end) as diproses,
+            SUM(case when status_pesanan = 3 then 1 else 0 end) as selesai,
+            SUM(case when status_pesanan = 4 then 1 else 0 end) as diambil
+            FROM pesanan
             WHERE id_pembeli = ?
-		    ORDER BY waktu_pesan DESC", array($_SESSION['id_penjual']));
+		    ORDER BY waktu_pesan DESC", array($id_pembeli));
     }
+
+//    function pesanan_penjual(){
+//        return $this->db->query("
+//            SELECT * FROM pesanan
+//            WHERE id_penjual = ?
+//		    ORDER BY waktu_pesan DESC", array($_SESSION['id_penjual']));
+//    }
+//
+//    function pesanan_penjual_count($id_pembeli){
+//        return $this->db->query("
+//            SELECT
+//            SUM(case when status_pesanan = 1 then 1 else 0 end) as menunggu,
+//            SUM(case when status_pesanan = 2 then 1 else 0 end) as diproses,
+//            SUM(case when status_pesanan = 3 then 1 else 0 end) as selesai,
+//            SUM(case when status_pesanan = 4 then 1 else 0 end) as diambil
+//            FROM pesanan
+//            WHERE id_pembeli = ?
+//		    ORDER BY waktu_pesan DESC", array($id_pembeli));
+//    }
 
     function listPesanan(){
         return $this->db->query("SELECT id_pesanan, nama_pesanan

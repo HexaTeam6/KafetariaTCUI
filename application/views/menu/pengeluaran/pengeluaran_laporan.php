@@ -80,84 +80,19 @@
             <span></span> <i class="fa fa-caret-down"></i>
         </div>
         <div class="blue accent-2 p-5">
-            <canvas data-chart="line" height="300" data-dataset="[
-                                                            [12000, 4500, 24000, 32000],
-
-                                                            ]" data-labels="['Senin',
-                                                            'Selasa',
-                                                            'Rabu',
-                                                            'Kamis',]" data-dataset-options="[
-                                                            {   label:'Rp ',
-                                                                fill: false,
-
-                                                                backgroundColor: '#fff',
-                                                                borderColor: 'rgba(255,255,255,0.5)',
-                                                                pointBorderColor: '#fff',
-                                                                pointBackgroundColor: '#4285f4',
-                                                                pointBorderWidth: '0',
-                                                                pointStyle: 'circle',
-                                                                borderWidth: 2,
-                                                                borderJoinStyle: 'miter',
-                                                                pointHoverBackgroundColor: '#fff',
-                                                                pointHoverBorderColor: '#fff',
-                                                                pointHoverBorderWidth: 1,
-                                                                pointRadius: 3,
-                                                                lineTension:0,
-                                                            },
-                                                            ]" data-options="{
-                                                                    maintainAspectRatio: false,
-                                                                    legend: {
-                                                                        display: false,
-                                                                        labels: {
-                                                                            fontColor: 'white',
-
-                                                                        }
-
-                                                                    },
-
-                                                                    scales: {
-                                                                        xAxes: [{
-                                                                            display: true,
-                                                                            ticks: {
-                                                                                fontColor: 'rgba(255,255,255,0.5)',
-
-                                                                            },
-                                                                            gridLines: {
-                                                                                display: false,
-                                                                            }
-
-                                                                        }],
-                                                                        yAxes: [{
-                                                                            display: true,
-                                                                            ticks: {
-                                                                                fontColor: 'rgba(255,255,255,0.5)',
-                                                                                stepSize: 5000,
-
-                                                                            },
-                                                                            gridLines: {
-                                                                                zeroLineColor: 'rgba(255,255,255,0.1)',
-                                                                                color: 'rgba(255,255,255,0.1)',
-
-                                                                            }
-                                                                        }]
-
-                                                                    },
-                                                                    elements: {
-                                                                        line: {
-                                                                            tension: 0.4,
-                                                                            borderWidth: 1
-                                                                        },
-                                                                        point: {
-                                                                            radius: 2,
-                                                                            hitRadius: 10,
-                                                                            hoverRadius: 6,
-                                                                            borderWidth: 4,
-
-
-                                                                        }
-                                                                    }
-                                                                }">
-            </canvas>
+            <a href="<?= site_url('Pengeluaran/laporan/hari') ?>" class="btn btn-primary btn-sm" style="margin-bottom: 10px">
+                <i class="icon-line-chart"></i>
+                Harian
+            </a>
+            <a href="<?= site_url('Pengeluaran/laporan/minggu') ?>" class="btn btn-primary btn-sm" style="margin-bottom: 10px">
+                <i class="icon-line-chart"></i>
+                Mingguan
+            </a>
+            <a href="<?= site_url('Pengeluaran/laporan/bulan') ?>" class="btn btn-primary btn-sm" style="margin-bottom: 10px">
+                <i class="icon-line-chart"></i>
+                Bulanan
+            </a>
+            <canvas id="chart" height="300"></canvas>
         </div>
         <div class="container-fluid animatedParent animateOnce no-p">
             <div class="animated fadeInUpShort">
@@ -181,48 +116,26 @@
                     <thead>
                     <tr>
                     <tr>
-                        <th>ID Pengeluaran</th>
                         <th>Nama Pengeluaran</th>
                         <th>Jumlah</th>
-                        <th>Tanggal Pembelian</th>
-                        <th>Aksi</th>
+                        <th>Waktu Pembelian</th>
+<!--                        <th>Aksi</th>-->
                     </tr>
                     </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($data as $row):?>
                     <tr>
-                        <td class="id">P241020201</td>
-                        <td>Plastik 1KG</td>
-                        <td class="harga">Rp 24.000</td>
-                        <td class="waktuPesan">12/01/2021</td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                <i class="icon-print"></i>
-                            </button>
-                        </td>
+                        <td><?= $row->nama_pengeluaran ?></td>
+                        <td>Rp <?= $row->jumlah ?></td>
+                        <td><?= $row->waktu ?></td>
+<!--                        <td>-->
+<!--                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">-->
+<!--                                <i class="icon-print"></i>-->
+<!--                            </button>-->
+<!--                        </td>-->
                     </tr>
-                    <tr>
-                        <td class="id">P241020202</td>
-                        <td>Gula 3KG</td>
-                        <td class="harga">Rp 43.000</td>
-                        <td class="waktuPesan">17/01/2021</td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                <i class="icon-print"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="id">P241020203</td>
-                        <td>Beras 5KG</td>
-                        <td class="harga">Rp 76.000</td>
-                        <td class="waktuPesan">10/01/2021</td>
-                        <td>
-                            <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                <i class="icon-print"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    <?php endforeach;?>
                     </tfoot>
                 </table>
             </div>
@@ -235,6 +148,83 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
     $(document).ready(function () {
+        var ctx = document.getElementById('chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: <?= json_encode($labels) ?>,
+                datasets: [{
+                    label:'Rp ',
+                    fill: false,
+                    data: <?= json_encode($datas) ?>,
+                    backgroundColor: '#fff',
+                    borderColor: 'rgba(255,255,255,0.5)',
+                    pointBorderColor: '#fff',
+                    pointBackgroundColor: '#4285f4',
+                    pointBorderWidth: '0',
+                    pointStyle: 'circle',
+                    borderWidth: 2,
+                    borderJoinStyle: 'miter',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#fff',
+                    pointHoverBorderWidth: 1,
+                    pointRadius: 3,
+                    lineTension:0,
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                    labels: {
+                        fontColor: 'white',
+
+                    }
+
+                },
+
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            fontColor: 'rgba(255,255,255,0.5)',
+
+                        },
+                        gridLines: {
+                            display: false,
+                        }
+
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            fontColor: 'rgba(255,255,255,0.5)',
+                            stepSize: 50000,
+
+                        },
+                        gridLines: {
+                            zeroLineColor: 'rgba(255,255,255,0.1)',
+                            color: 'rgba(255,255,255,0.1)',
+
+                        }
+                    }]
+
+                },
+                elements: {
+                    line: {
+                        tension: 0.4,
+                        borderWidth: 1
+                    },
+                    point: {
+                        radius: 2,
+                        hitRadius: 10,
+                        hoverRadius: 6,
+                        borderWidth: 4,
+                    }
+                }
+            }
+        });
+
         var start = moment().subtract(29, 'days');
         var end = moment();
 

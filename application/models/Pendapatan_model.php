@@ -1,38 +1,35 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pengeluaran_model extends CI_Model{
+class Pendapatan_model extends CI_Model{
 
     public function __construct()
     {
         parent::__construct();
     }
 
-    function tampil_data(){
-        return $this->db->query("
-            SELECT * FROM pengeluaran
-		    ORDER BY created_at DESC");
-    }
-
     function tampil_perhari(){
         return $this->db->query("
-            SELECT p.*, SUM(p.jumlah) AS total, DATE(tanggal_pembelian) as waktu
-            FROM pengeluaran p
-            GROUP BY DATE(tanggal_pembelian)");
+            SELECT p.*, SUM(p.total_bayar) AS total, u.`nama_pembeli`, DATE(waktu_pesan) as waktu
+            FROM pesanan p, pembeli u
+            WHERE p.id_pembeli = u.`id_pembeli`
+            GROUP BY DATE(waktu_pesan)");
     }
 
     function tampil_perminggu(){
         return $this->db->query("
-            SELECT p.*, SUM(p.jumlah) AS total , WEEK(tanggal_pembelian) as waktu
-            FROM pengeluaran p
-            GROUP BY  WEEK(tanggal_pembelian)");
+            SELECT p.*, SUM(p.total_bayar) AS total , u.`nama_pembeli`, WEEK(waktu_pesan) as waktu
+            FROM pesanan p, pembeli u
+            WHERE p.id_pembeli = u.`id_pembeli`
+            GROUP BY  WEEK(waktu_pesan)");
     }
 
     function tampil_perbulan(){
         return $this->db->query("
-            select p.*, sum(p.jumlah) AS total , DATE_FORMAT(tanggal_pembelian, '%m-%Y') as waktu
-            from pengeluaran p
-            group by  DATE_FORMAT(tanggal_pembelian, '%m-%Y')");
+            select p.*, sum(p.total_bayar) AS total , u.`nama_pembeli`, DATE_FORMAT(waktu_pesan, '%m-%Y') as waktu
+            from pesanan p, pembeli u
+            where p.id_pembeli = u.`id_pembeli`
+            group by  DATE_FORMAT(waktu_pesan, '%m-%Y')");
     }
 
     function input_data($table,$data){

@@ -20,6 +20,10 @@ class Menu_model extends CI_Model{
                                  FROM menu");
     }
 
+    function updateStock($id_menu, $jumlah){
+        return $this->db->query("UPDATE menu SET stok = stok - ? WHERE id_menu = ?", array($jumlah, $id_menu));
+    }
+
     function input_data($table,$data){
         //$this->output->enable_profiler(TRUE);
         return $this->db->insert($table,$data);

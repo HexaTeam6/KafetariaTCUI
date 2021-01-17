@@ -112,14 +112,13 @@
         </div>
 
         <div class="container-fluid relative animatedParent animateOnce" style="padding-top: 15px">
-            <?php if ($_SESSION['username'] != 'user'){?>
             <div class="row text-white no-gutters no-m shadow">
                 <div class="col-lg-3">
                     <div class="green counter-box p-40">
                         <div class="float-right">
                             <span class="icon icon-check s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">0</div>
+                        <div class="sc-counter s-36"><?= $diambil ?></div>
                         <h6 class="counter-title">Diambil</h6>
                     </div>
                 </div>
@@ -128,7 +127,7 @@
                         <div class="float-right">
                             <span class="icon icon-archive s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">0</div>
+                        <div class="sc-counter s-36"><?= $selesai ?></div>
                         <h6 class="counter-title">Selesai</h6>
                     </div>
                 </div>
@@ -137,7 +136,7 @@
                         <div class="float-right">
                             <span class="icon icon-queue s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">0</div>
+                        <div class="sc-counter s-36"><?= $menunggu ?></div>
                         <h6 class="counter-title">Menunggu</h6>
                     </div>
                 </div>
@@ -146,12 +145,11 @@
                         <div class="float-right">
                             <span class="icon icon-sync_problem s-48"></span>
                         </div>
-                        <div class="sc-counter s-36">5</div>
+                        <div class="sc-counter s-36"><?= $diproses ?></div>
                         <h6 class="counter-title">Diproses</h6>
                     </div>
                 </div>
             </div>
-            <?php }?>
 
             <div class="card my-3 no-b">
                 <div class="card-body">

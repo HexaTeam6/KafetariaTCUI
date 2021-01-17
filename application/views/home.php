@@ -118,7 +118,6 @@
                 </div>
             </div>
             <?php }else{
-                echo var_dump($_SESSION);
                 echo '<h1>Selamat Datang</h1>';
             }?>
         </div>

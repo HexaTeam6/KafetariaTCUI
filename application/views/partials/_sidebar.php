@@ -84,7 +84,7 @@
             <?php }?>
             <?php if ($_SESSION['role'] == 'A' || $_SESSION['role'] == 'K' || $_SESSION['role'] == 'P' || (isset($_SESSION['id_kasir']) || isset($_SESSION['id_penjual']))){?>
             <li class="treeview no-b">
-                <a href="<?php echo site_url('/Pendapatan')?>">
+                <a href="<?php echo site_url('/Pendapatan/index/hari')?>">
                     <i class="icon icon-document-checked text-primary s-18"></i>
                     <span>Laporan Pendapatan</span>
                 </a>
@@ -99,7 +99,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?php echo site_url('/Pengeluaran')?>"><i class="icon icon-folder5"></i>Data Pengeluaran</a></li>
-                        <li><a href="<?php echo site_url('/Pengeluaran/laporan')?>"><i class="icon icon-folder5"></i>Laporan Pengeluaran</a></li>
+                        <li><a href="<?php echo site_url('/Pengeluaran/laporan/hari')?>"><i class="icon icon-folder5"></i>Laporan Pengeluaran</a></li>
                     </ul>
                 </li>
             <?php }?>

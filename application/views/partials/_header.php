@@ -21,7 +21,7 @@
             <!--Top Menu Start -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <?php if ($_SESSION['role'] == 'U'){?>
+                    <?php if ($_SESSION['role'] == 'U' || isset($_SESSION['id_pembeli'])){?>
                     <li class="dropdown custom-dropdown notifications-menu">
                         <a href="#" class=" nav-link" data-toggle="dropdown" aria-expanded="false">
                             <i class="icon-shopping-cart "></i>

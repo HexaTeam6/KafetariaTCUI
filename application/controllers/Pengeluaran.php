@@ -20,11 +20,27 @@ class Pengeluaran extends CI_Controller
         }
     }
 
-    public function laporan(){
+    public function laporan($type)
+    {
         if (!isset($_SESSION['username']) && !isset($_SESSION['password'])){
             redirect(site_url().'/Auth/login');
         }else{
-            $this->load->view('menu/pengeluaran/pengeluaran_laporan');
+            if ($type == "minggu"){
+                $data['data'] = $this->Pengeluaran_model->tampil_perminggu()->result();
+            }
+            elseif ($type == "bulan"){
+                $data['data'] = $this->Pengeluaran_model->tampil_perbulan()->result();
+            }
+            else{
+                $data['data'] = $this->Pengeluaran_model->tampil_perhari()->result();
+            }
+
+            foreach ($data['data'] as $row) {
+                $data['labels'][] = $row->waktu;
+                $data['datas'][] = $row->total;
+            }
+
+            $this->load->view('menu/pengeluaran/pengeluaran_laporan', $data);
         }
     }
 
