@@ -16,15 +16,18 @@ class Pesanan extends CI_Controller
         if (!isset($_SESSION['username']) && !isset($_SESSION['password'])){
             redirect(site_url().'/Auth/login');
         }else{
-            if ($_SESSION['role'] == 'U'){
+//            echo $_SESSION['role'];
+//            die();
+            if ($_SESSION['role'] == 'U' || isset($_SESSION['id_pembeli'])){
                 $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
             }
-            elseif ($_SESSION['role'] == 'K'){
+            elseif ($_SESSION['role'] == 'K' || isset($_SESSION['id_kasir'])){
                 $data['data'] = $this->Pesanan_model->tampil_data()->result();
             }
-            elseif ($_SESSION['role'] == 'P'){
+            elseif ($_SESSION['role'] == 'P' || isset($_SESSION['id_penjual'])){
                 $data['data'] = $this->Pesanan_model->pesanan_menuggu()->result();
             }
+            $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
             $this->load->view('menu/pesanan/pesanan_list', $data);
         }
     }

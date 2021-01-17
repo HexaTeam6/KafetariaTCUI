@@ -40,11 +40,11 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="namaMenu" class="col-form-label">Nama Menu</label>
-                            <input type="text" class="form-control" id="namaMenu" name="nama_menu" placeholder="Nama Menu">
+                            <input type="text" class="form-control" id="namaMenu" name="nama_menu" placeholder="Nama Menu" required>
                         </div>
                         <div class="form-group">
                             <label for="kategoriMenu" class="col-form-label">Kategori Menu</label>
-                            <select id="kategoriMenu" name="id_kategori" class="form-control">
+                            <select id="kategoriMenu" name="id_kategori" class="form-control" required>
                                 <?php foreach ($kategori as $row):?>
                                     <option value="<?= $row->id_kategori ?>"><?= $row->nama_kategori ?></option>
                                 <?php endforeach;?>
@@ -56,12 +56,12 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Rp</div>
                                 </div>
-                                <input type="number" class="form-control" name="harga_menu" id="hargaMenu" placeholder="Harga">
+                                <input type="number" class="form-control" name="harga_menu" id="hargaMenu" placeholder="Harga" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="jumlahMenu" class="col-form-label">Jumlah</label>
-                            <input type="number" class="form-control" name="stok" id="jumlahMenu" placeholder="Jumlah">
+                            <input type="number" class="form-control" name="stok" id="jumlahMenu" placeholder="Jumlah" required>
                         </div>
                     </div>
                     <div class="modal-footer">

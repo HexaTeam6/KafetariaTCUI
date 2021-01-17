@@ -50,7 +50,7 @@
                 </a>
             </li>
             <?php }?>
-            <?php if ($_SESSION['role'] == 'P'){?>
+            <?php if ($_SESSION['role'] == 'P' || isset($_SESSION['id_penjual'])){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Menu')?>">
                     <i class="icon icon-spoon text-primary s-18"></i>
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <?php }?>
-            <?php if ($_SESSION['role'] == 'K' || $_SESSION['role'] == 'U' || $_SESSION['role'] == 'P'){?>
+            <?php if (($_SESSION['role'] == 'K' || $_SESSION['role'] == 'U' || $_SESSION['role'] == 'P') || (isset($_SESSION['id_kasir']) || isset($_SESSION['id_pembeli']) || isset($_SESSION['id_penjual']))){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Pesanan')?>">
                     <i class="icon icon-attach_money text-primary s-18"></i>
@@ -82,7 +82,7 @@
                 </a>
             </li>
             <?php }?>
-            <?php if ($_SESSION['role'] == 'A' || $_SESSION['role'] == 'K' || $_SESSION['role'] == 'P'){?>
+            <?php if ($_SESSION['role'] == 'A' || $_SESSION['role'] == 'K' || $_SESSION['role'] == 'P' || (isset($_SESSION['id_kasir']) || isset($_SESSION['id_penjual']))){?>
             <li class="treeview no-b">
                 <a href="<?php echo site_url('/Pendapatan')?>">
                     <i class="icon icon-document-checked text-primary s-18"></i>

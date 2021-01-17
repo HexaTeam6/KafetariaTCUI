@@ -156,12 +156,12 @@
             <div class="card my-3 no-b">
                 <div class="card-body">
                     <div class="col-sm-12"style="margin-bottom: 15px">
-                        <?php if ($_SESSION['username'] == 'kasir'){?>
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" id="btnAdd">
-                            <i class="icon-add"></i>
-                            Tambah data
-                        </button>
-                        <?php }?>
+<!--                        --><?php //if ($_SESSION['username'] == 'kasir'){?>
+<!--                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal" id="btnAdd">-->
+<!--                            <i class="icon-add"></i>-->
+<!--                            Tambah data-->
+<!--                        </button>-->
+<!--                        --><?php //}?>
                     </div>
                     <table class="table table-bordered table-hover data-tables"
                            data-options='{"searching":true}' id="datatable">

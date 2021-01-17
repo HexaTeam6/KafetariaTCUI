@@ -25,7 +25,7 @@
                 </div>
         </header>
         <div class="container-fluid relative animatedParent animateOnce">
-            <?php if($_SESSION['role'] == 'U'){?>
+            <?php if($_SESSION['role'] == 'U' || isset($_SESSION['id_pembeli'])){?>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -118,6 +118,7 @@
                 </div>
             </div>
             <?php }else{
+                echo var_dump($_SESSION);
                 echo '<h1>Selamat Datang</h1>';
             }?>
         </div>
