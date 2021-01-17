@@ -38,42 +38,6 @@
                     </div>
                 </div>
             </div>
-            <!--Top Menu Start -->
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-                    <!-- Notifications -->
-                    <li class="dropdown custom-dropdown notifications-menu">
-                        <a href="#" class=" nav-link" data-toggle="dropdown" aria-expanded="false">
-                            <i class="icon-notifications "></i>
-                            <span class="badge badge-danger badge-mini rounded-circle">4</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="header">You have 10 notifications</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon icon-data_usage text-success"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon icon-data_usage text-danger"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="icon icon-data_usage text-yellow"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer p-2 text-center"><a href="#">View all</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </div>
 <!--        <div class="col-md-2 float-right" id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">-->
 <!--            <i class="icon icon-calendar"></i>&nbsp;-->
