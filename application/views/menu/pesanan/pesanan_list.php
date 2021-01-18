@@ -201,19 +201,19 @@
                             }?>
                             <td class="status"><span class="badge badge-<?= $badge ?> r-3 blink"><?= $status ?></span></td>
                             <td>
-                                <?php if ($row->status_pesanan != 4 && $_SESSION['role'] =! 'U'){?>
+                                <?php if ($row->status_pesanan != 4 && !isset($_SESSION['id_pembeli'])){?>
                                 <button type="button" class="btn btn-warning btn-sm" id="btnEdit" data-toggle="modal" data-target="#statusModal">
                                     <i class="icon-pencil"></i>
                                 </button>
                                 <?php }?>
-                                <?php if ($row->status_pesanan == 4 && $_SESSION['role'] == 'U'){?>
+                                <?php if ($row->status_pesanan == 4 && isset($_SESSION['id_pembeli'])){?>
                                 <button type="button" class="btn btn-primary btn-sm" id="btnReview" data-toggle="modal" data-target="#reviewModal">
                                     <i class="icon-chat2"></i>
                                 </button>
                                 <?php }?>
-                                <button type="button" class="btn btn-default btn-sm" id="btnPrint">
-                                    <i class="icon-print"></i>
-                                </button>
+<!--                                <button type="button" class="btn btn-default btn-sm" id="btnPrint">-->
+<!--                                    <i class="icon-print"></i>-->
+<!--                                </button>-->
 <!--                                <button type="button" class="btn btn-success btn-sm" id="btnDetail">-->
 <!--                                    <i class="icon-search"></i>-->
 <!--                                </button>-->

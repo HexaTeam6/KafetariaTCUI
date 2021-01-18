@@ -25,14 +25,14 @@ class Pesanan_model extends CI_Model{
 		    ORDER BY waktu_pesan DESC");
     }
 
-    function pesananByIdPembeli($id_pembeli){
+    function pesananByIdPembeli(){
         return $this->db->query("
             SELECT * FROM pesanan
             WHERE id_pembeli = ?
-		    ORDER BY waktu_pesan DESC", array($id_pembeli));
+		    ORDER BY waktu_pesan DESC", array($_SESSION['id_pembeli']));
     }
 
-    function pesananByIdPembeli_count($id_pembeli){
+    function pesananByIdPembeli_count(){
         return $this->db->query("
             SELECT 
             SUM(case when status_pesanan = 1 then 1 else 0 end) as menunggu,
@@ -41,7 +41,7 @@ class Pesanan_model extends CI_Model{
             SUM(case when status_pesanan = 4 then 1 else 0 end) as diambil
             FROM pesanan
             WHERE id_pembeli = ?
-		    ORDER BY waktu_pesan DESC", array($id_pembeli));
+		    ORDER BY waktu_pesan DESC", array($_SESSION['id_pembeli']));
     }
 
 //    function pesanan_penjual(){

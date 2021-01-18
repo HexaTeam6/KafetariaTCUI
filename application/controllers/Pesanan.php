@@ -18,9 +18,9 @@ class Pesanan extends CI_Controller
         }else{
 //            echo $_SESSION['role'];
 //            die();
-            if ($_SESSION['role'] == 'U' || isset($_SESSION['id_pembeli'])){
-                $result = $this->Pesanan_model->pesananByIdPembeli_count($_SESSION['id_pembeli'])->row();
-                $data['data'] = $this->Pesanan_model->pesananByIdPembeli($_SESSION['id_pembeli'])->result();
+            if (isset($_SESSION['id_pembeli'])){
+                $result = $this->Pesanan_model->pesananByIdPembeli_count()->row();
+                $data['data'] = $this->Pesanan_model->pesananByIdPembeli()->result();
             }
             else {
                 $result = $this->Pesanan_model->tampil_data_count()->row();
